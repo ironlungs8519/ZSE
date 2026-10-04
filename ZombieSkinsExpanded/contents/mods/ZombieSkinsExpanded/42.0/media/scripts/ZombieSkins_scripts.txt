@@ -1,0 +1,996 @@
+module ZombieSkins {
+    imports { Base }
+
+    sound screamer1
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/screamer1.ogg,
+            volume = 1.0,
+        }
+    }
+
+    sound screamer2
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/screamer2.ogg,
+            volume = 1.0,
+        }
+    }
+
+    sound IZ_ZExplode
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/IZ_ZExplode.ogg,
+            distanceMax = 20,
+            volume = 1.0,
+        }
+    }
+
+    sound ZSE_GreyVoice01
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_GreyVoice01.ogg,
+            volume = 0.25,
+        }
+    }
+
+    sound ZSE_GreyVoice02
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_GreyVoice02.ogg,
+            volume = 0.25,
+        }
+    }
+
+    sound ZSE_GreyVoice03
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_GreyVoice03.ogg,
+            volume = 0.25,
+        }
+    }
+
+    sound ZSE_GreyVoice04
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_GreyVoice04.ogg,
+            volume = 0.25,
+        }
+    }
+
+    sound ZSE_GreyVoice05
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_GreyVoice05.ogg,
+            volume = 0.25,
+        }
+    }
+
+    sound ZSE_GreyVoice06
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_GreyVoice06.ogg,
+            volume = 0.25,
+        }
+    }
+
+    sound ZSE_GreyVoice07
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_GreyVoice07.ogg,
+            volume = 0.25,
+        }
+    }
+
+    sound ZSE_GreyVoice08
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_GreyVoice08.ogg,
+            volume = 0.25,
+        }
+    }
+
+    sound ZSE_GreyVoice09
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_GreyVoice09.ogg,
+            volume = 0.25,
+        }
+    }
+
+    sound ZSE_GreyVoice10
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_GreyVoice10.ogg,
+            volume = 0.25,
+        }
+    }
+
+    sound ZSE_GreyVoice11
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_GreyVoice11.ogg,
+            volume = 0.25,
+        }
+    }
+
+    sound ZSE_GreyVoice12
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_GreyVoice12.ogg,
+            volume = 0.25,
+        }
+    }
+
+    sound ZSE_SkinnyVoice01
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_SkinnyVoice01.ogg,
+            volume = 0.45,
+        }
+    }
+
+    sound ZSE_SkinnyVoice02
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_SkinnyVoice02.ogg,
+            volume = 0.45,
+        }
+    }
+
+    sound ZSE_SkinnyVoice03
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_SkinnyVoice03.ogg,
+            volume = 0.45,
+        }
+    }
+
+    sound ZSE_SkinnyVoice04
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_SkinnyVoice04.ogg,
+            volume = 0.45,
+        }
+    }
+
+    sound ZSE_SkinnyVoice05
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_SkinnyVoice05.ogg,
+            volume = 0.45,
+        }
+    }
+
+    sound ZSE_SkinnyVoice06
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_SkinnyVoice06.ogg,
+            volume = 0.45,
+        }
+    }
+
+    sound ZSE_SkinnyVoice07
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_SkinnyVoice07.ogg,
+            volume = 0.45,
+        }
+    }
+
+    sound ZSE_SkinnyVoice08
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_SkinnyVoice08.ogg,
+            volume = 0.45,
+        }
+    }
+
+    sound ZSE_SkinnyVoice09
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_SkinnyVoice09.ogg,
+            volume = 0.45,
+        }
+    }
+
+    sound ZSE_SkinnyVoice10
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_SkinnyVoice10.ogg,
+            volume = 0.45,
+        }
+    }
+
+    sound ZSE_SkinnyVoice11
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_SkinnyVoice11.ogg,
+            volume = 0.45,
+        }
+    }
+
+    sound ZSE_SkinnyVoice12
+    {
+        category = Zombie,
+        loop = FALSE,
+        is3D = TRUE,
+        clip
+        {
+            file = media/sound/ZSE_SkinnyVoice12.ogg,
+            volume = 0.45,
+        }
+    }
+
+	item Volatile_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Volatile Skin,
+		ClothingItem            = Volatile_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Volatile_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Volatile Skin (Light),
+		ClothingItem            = Volatile_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item RadiationZed_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Radiation Skin,
+		ClothingItem            = RadiationZed_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item RadiationZed_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Radiation Skin (Light),
+		ClothingItem            = RadiationZed_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item RunnerZed_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Runner Skin,
+		ClothingItem            = RunnerZed_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item RunnerZed_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Runner Skin (Light),
+		ClothingItem            = RunnerZed_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item TankyZed_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Tanky Skin,
+		ClothingItem            = TankyZed_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item TankyZed_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Tanky Skin (Light),
+		ClothingItem            = TankyZed_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item WoodZed_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Wood Skin,
+		ClothingItem            = WoodZed_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item WoodZed_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Wood Skin (Light),
+		ClothingItem            = WoodZed_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Demolisher01_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Demolisher Skin,
+		ClothingItem            = Demolisher01_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Demolisher01_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Demolisher Skin (Light),
+		ClothingItem            = Demolisher01_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Revenant01_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Revenant Skin,
+		ClothingItem            = Revenant01_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Revenant01_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Revenant Skin (Light),
+		ClothingItem            = Revenant01_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Goon01_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Goon Skin,
+		ClothingItem            = Goon01_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Goon01_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Goon Skin (Light),
+		ClothingItem            = Goon01_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Boomer01_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Boomer Skin,
+		ClothingItem            = Boomer01_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Boomer01_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Boomer Skin (Light),
+		ClothingItem            = Boomer01_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Charge01_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Charge Skin,
+		ClothingItem            = Charge01_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Charge01_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Charge Skin (Light),
+		ClothingItem            = Charge01_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Ogre01_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Ogre Skin,
+		ClothingItem            = Ogre01_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Ogre01_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Ogre Skin (Light),
+		ClothingItem            = Ogre01_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Summoner01_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Summoner Skin,
+		ClothingItem            = Summoner01_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Summoner01_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Summoner Skin (Light),
+		ClothingItem            = Summoner01_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Toad01_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Toad Skin,
+		ClothingItem            = Toad01_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Toad01_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Toad Skin (Light),
+		ClothingItem            = Toad01_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Cloaker01_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Cloaker Skin,
+		ClothingItem            = Cloaker01_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Cloaker01_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Cloaker Skin (Light),
+		ClothingItem            = Cloaker01_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Experiment1_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Experiment 1 Skin,
+		ClothingItem            = Experiment1_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Experiment1_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Experiment 1 Skin (Light),
+		ClothingItem            = Experiment1_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Experiment2_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Experiment 2 Skin,
+		ClothingItem            = Experiment2_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Experiment2_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Experiment 2 Skin (Light),
+		ClothingItem            = Experiment2_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Experiment3_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Experiment 3 Skin,
+		ClothingItem            = Experiment3_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Experiment3_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Experiment 3 Skin (Light),
+		ClothingItem            = Experiment3_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Experiment4_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Experiment 4 Skin,
+		ClothingItem            = Experiment4_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Experiment4_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Experiment 4 Skin (Light),
+		ClothingItem            = Experiment4_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Experiment5_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Experiment 5 Skin,
+		ClothingItem            = Experiment5_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Experiment5_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Experiment 5 Skin (Light),
+		ClothingItem            = Experiment5_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Experiment6_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Experiment 6 Skin,
+		ClothingItem            = Experiment6_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Experiment6_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Experiment 6 Skin (Light),
+		ClothingItem            = Experiment6_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Experiment7_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Experiment 7 Skin,
+		ClothingItem            = Experiment7_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Experiment7_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Experiment 7 Skin (Light),
+		ClothingItem            = Experiment7_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item Grey01_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Grey Alien Skin,
+		ClothingItem            = Grey01_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item Grey01_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Grey Alien Skin (Light),
+		ClothingItem            = Grey01_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+	item SkinnyBob01_Costume
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Skinny Bob Skin,
+		ClothingItem            = SkinnyBob01_Costume,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		hidden                  = true,
+		Weight                  = 120,
+	}
+
+	item SkinnyBob01_Costume_Light
+	{
+		ItemType                = base:Clothing,
+		DisplayName             = Zombie Skinny Bob Skin (Light),
+		ClothingItem            = SkinnyBob01_Costume_Light,
+		BodyLocation            = FullSuit,
+		BloodLocation           = Shoes,
+		Icon                    = Tshirt_Ful_Flo,
+		CanHaveHoles            = false,
+		WorldRender             = FALSE,
+		ChanceToFall            = 0,
+		Weight                  = 1,
+	}
+
+}

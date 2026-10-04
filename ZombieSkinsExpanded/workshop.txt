@@ -1,0 +1,74 @@
+version=1
+id=3797914505
+title=Zombie Skins Expanded
+description=[h1]Zombie Skins: Expanded[/h1]
+description=
+description=[h2]Changes From the Original[/h2]
+description=[list]
+description=[*][b]Shove immunity added.[/b] These zombies can no longer be knocked down just by walking up and pushing them. Weapon crits still work as intended.
+description=[*][b]Optional rain/snow/fog-only spawning.[/b] New sandbox toggle, off by default.
+description=[*][b]Optional night-only spawning.[/b] One toggle for every skin, plus one per skin, limited to 12am-6am game time. It combines with the rain/snow/fog option instead of replacing it: turn on both if you want!
+description=[*][b]Exploder blast radius fixed.[/b] It wasn't actually circular — zombies in the corners of the blast zone were taking damage from farther away than the radius said they should.
+description=[*][b]Two ultra-rare alien skins.[/b] A Grey Alien and Skinny Bob: sprinters and climbers that scream in their own alien voices, drawing zombies toward them. They are roughly 50x rarer than any other skin by default, and by default they only appear between 12am and 6am game time. Every setting, including that one, is adjustable in the sandbox under the Aliens page. Models, textures and voice clips are from [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3759103750]Alien Events[/url] by [url=https://steamcommunity.com/profiles/76561198109648219]TheS1X[/url] (see Credits).
+description=[*][b]PhunSprinters 2 compatibility.[/b] If you run a setup w. PhunSprinters2 that controls when vanilla zombies sprint by time of day, these skins won't cause issues.
+description=[*][b]Compatibility with Bandits2[/b] 
+description=[*][b]Project A-Life compatibility.[/b]
+description=[*][b]They See You compatibility.[/b]
+description=
+description=
+description=[h2]Sandbox Options[/h2]
+description=[list]
+description=[*]Per-skin Enable / Spawn Chance / Health
+description=[*][b]Shove Knockdown Immunity[/b] — these zombies can't be shoved to the ground. Weapon crits still drop them.
+description=[*][b]Spawn Only During Precipitation or Fog[/b] — optional, restricts all 23 types to rain, snow, or fog
+description=[*][b]Spawn Only At Night[/b] — optional, for all skins or per skin (12am-6am game time). Works alongside the precipitation option
+description=[*][b]Alien Voices[/b] — the aliens scream with their own voice clips (on by default)
+description=[*][b]Screamer Skins Ignore They See You[/b] — on by default, no effect if you don't run that mod
+description=[/list]
+description=
+description=[h2]Zombie Types[/h2]
+description=[list]
+description=[*][b]Runners[/b] — sprint instead of shambling
+description=[*][b]Climbers[/b] — can scale walls and obstacles
+description=[*][b]Wall Breakers[/b] — smash through fences, barricades, doors, and windows
+description=[*][b]Toxic[/b] — poison nearby players on a cooldown (hazmat suits protect you)
+description=[*][b]Screamers[/b] — shriek and pull in nearby zombies
+description=[*][b]Exploders[/b] — detonate on death, damaging nearby zomboids(configurable damage and and option to emit fire on blast)
+description=[/list]
+description=
+description=[h2]Credits[/h2]
+description=This is a fork of zakremort's original mod, with the above features layered on top.
+description=
+description=Zakremort's mod itself credits the following creators for the original skins and assets this is built on:
+description=CreamPie, Kyne's Peace, Braven, HW_Lover, Bags, and Alex.
+description=
+description=[b]Original mods:[/b]
+description=[list]
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3328429524]Original Mod 1[/url]
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3323541340]Original Mod 2[/url]
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3263446689]Original Mod 3[/url]
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2907628879]Original Mod 4[/url]
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3058825135]Original Mod 5[/url]
+description=[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2749928925]Original Mod 6[/url]
+description=[/list]
+description=
+description=All credit for the original assets, skins, and base concept goes to zakremort and the creators above. This is a fork with a few new features layered on top — go check out the original.
+description=
+description=[b]Alien skins:[/b] The Grey Alien and Skinny Bob models, textures and voice clips come from [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3759103750]Alien Events[/url] by [url=https://steamcommunity.com/profiles/76561198109648219]TheS1X[/url]. The author has said the mod is open source and free for anyone to fix, improve or reupload. All credit for those assets goes to TheS1X.
+description=
+description=[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3746812626]INVASION Z Zombie Skins [B41][B42][/url]
+description=
+description=[h1]Check out some of my other projects![/h1]
+description=
+description=[table]
+description=[tr]
+description=[td][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3793332872][img]https://i.imgur.com/0CUKUiX.png[/img][/url][/td]
+description=[td][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3789069683][img]https://i.imgur.com/TZ2nJio.png[/img][/url][/td]
+description=[/tr]
+description=[tr]
+description=[td][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3789066498][img]https://i.imgur.com/QGLWprI.png[/img][/url][/td]
+description=[td][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3795381200][img]https://i.imgur.com/rKzOnQP.png[/img][/url][/td]
+description=[/tr]
+description=[/table]
+tags=Build 42;Balance;Hardmode;Misc;Multiplayer;Realistic;Silly/Fun
+visibility=public

@@ -1,0 +1,1573 @@
+VERSION = 1,
+
+option ZSExpanded.PrecipitationOnly
+{
+	page = ZSExpanded, translation = PrecipitationOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.NightOnly
+{
+	page = ZSExpanded, translation = NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.TheySeeYouSkipScreamers
+{
+	page = ZSExpanded, translation = TheySeeYouSkipScreamers,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.VolatileEnable
+{
+	page = ZSExpanded, translation = VolatileEnable,
+	type = boolean, default = true,
+}
+option ZSExpanded.VolatileSpawnChance
+{
+	page = ZSExpanded, translation = VolatileSpawnChance, valueTranslation = VolatileSpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.VolatileHealth
+{
+	page = ZSExpanded, translation = VolatileHealth, valueTranslation = VolatileHealth,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.VolatileNoKnockdown
+{
+	page = ZSExpanded, translation = VolatileNoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.VolatileNightOnly
+{
+	page = ZSExpanded, translation = VolatileNightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.RadiationZedEnable
+{
+	page = ZSExpanded, translation = RadiationZedEnable,
+	type = boolean, default = true,
+}
+option ZSExpanded.RadiationZedSpawnChance
+{
+	page = ZSExpanded, translation = RadiationZedSpawnChance, valueTranslation = RadiationZedSpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.RadiationZedHealth
+{
+	page = ZSExpanded, translation = RadiationZedHealth, valueTranslation = RadiationZedHealth,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.RadiationZedNoKnockdown
+{
+	page = ZSExpanded, translation = RadiationZedNoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.RadiationZedNightOnly
+{
+	page = ZSExpanded, translation = RadiationZedNightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.RunnerZedEnable
+{
+	page = ZSExpanded, translation = RunnerZedEnable,
+	type = boolean, default = true,
+}
+option ZSExpanded.RunnerZedSpawnChance
+{
+	page = ZSExpanded, translation = RunnerZedSpawnChance, valueTranslation = RunnerZedSpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.RunnerZedHealth
+{
+	page = ZSExpanded, translation = RunnerZedHealth, valueTranslation = RunnerZedHealth,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.RunnerZedNoKnockdown
+{
+	page = ZSExpanded, translation = RunnerZedNoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.RunnerZedNightOnly
+{
+	page = ZSExpanded, translation = RunnerZedNightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.TankyZedEnable
+{
+	page = ZSExpanded, translation = TankyZedEnable,
+	type = boolean, default = true,
+}
+option ZSExpanded.TankyZedSpawnChance
+{
+	page = ZSExpanded, translation = TankyZedSpawnChance, valueTranslation = TankyZedSpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.TankyZedHealth
+{
+	page = ZSExpanded, translation = TankyZedHealth, valueTranslation = TankyZedHealth,
+	type = double, min = 0.5, max = 30, default = 15,
+}
+
+option ZSExpanded.TankyZedNoKnockdown
+{
+	page = ZSExpanded, translation = TankyZedNoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.TankyZedNightOnly
+{
+	page = ZSExpanded, translation = TankyZedNightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.WoodZedEnable
+{
+	page = ZSExpanded, translation = WoodZedEnable,
+	type = boolean, default = true,
+}
+option ZSExpanded.WoodZedSpawnChance
+{
+	page = ZSExpanded, translation = WoodZedSpawnChance, valueTranslation = WoodZedSpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.WoodZedHealth
+{
+	page = ZSExpanded, translation = WoodZedHealth, valueTranslation = WoodZedHealth,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.WoodZedNoKnockdown
+{
+	page = ZSExpanded, translation = WoodZedNoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.WoodZedNightOnly
+{
+	page = ZSExpanded, translation = WoodZedNightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Demolisher01Enable
+{
+	page = ZSExpandedZoD, translation = Demolisher01Enable,
+	type = boolean, default = true,
+}
+option ZSExpanded.Demolisher01SpawnChance
+{
+	page = ZSExpandedZoD, translation = Demolisher01SpawnChance, valueTranslation = Demolisher01SpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.Demolisher01Health
+{
+	page = ZSExpandedZoD, translation = Demolisher01Health, valueTranslation = Demolisher01Health,
+	type = double, min = 0.5, max = 30, default = 30,
+}
+
+option ZSExpanded.Demolisher01NoKnockdown
+{
+	page = ZSExpandedZoD, translation = Demolisher01NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Demolisher01NightOnly
+{
+	page = ZSExpandedZoD, translation = Demolisher01NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Revenant01Enable
+{
+	page = ZSExpandedZoD, translation = Revenant01Enable,
+	type = boolean, default = true,
+}
+option ZSExpanded.Revenant01SpawnChance
+{
+	page = ZSExpandedZoD, translation = Revenant01SpawnChance, valueTranslation = Revenant01SpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.Revenant01Health
+{
+	page = ZSExpandedZoD, translation = Revenant01Health, valueTranslation = Revenant01Health,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.Revenant01NoKnockdown
+{
+	page = ZSExpandedZoD, translation = Revenant01NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Revenant01NightOnly
+{
+	page = ZSExpandedZoD, translation = Revenant01NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Goon01Enable
+{
+	page = ZSExpandedZoD, translation = Goon01Enable,
+	type = boolean, default = true,
+}
+option ZSExpanded.Goon01SpawnChance
+{
+	page = ZSExpandedZoD, translation = Goon01SpawnChance, valueTranslation = Goon01SpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.Goon01Health
+{
+	page = ZSExpandedZoD, translation = Goon01Health, valueTranslation = Goon01Health,
+	type = double, min = 0.5, max = 30, default = 15,
+}
+
+option ZSExpanded.Goon01NoKnockdown
+{
+	page = ZSExpandedZoD, translation = Goon01NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Goon01NightOnly
+{
+	page = ZSExpandedZoD, translation = Goon01NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Boomer01Enable
+{
+	page = ZSExpandedZoD, translation = Boomer01Enable,
+	type = boolean, default = true,
+}
+option ZSExpanded.Boomer01SpawnChance
+{
+	page = ZSExpandedZoD, translation = Boomer01SpawnChance, valueTranslation = Boomer01SpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.Boomer01Health
+{
+	page = ZSExpandedZoD, translation = Boomer01Health, valueTranslation = Boomer01Health,
+	type = double, min = 0.5, max = 30, default = 15,
+}
+
+option ZSExpanded.Boomer01NoKnockdown
+{
+	page = ZSExpandedZoD, translation = Boomer01NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Boomer01NightOnly
+{
+	page = ZSExpandedZoD, translation = Boomer01NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Charge01Enable
+{
+	page = ZSExpandedZoD, translation = Charge01Enable,
+	type = boolean, default = true,
+}
+option ZSExpanded.Charge01SpawnChance
+{
+	page = ZSExpandedZoD, translation = Charge01SpawnChance, valueTranslation = Charge01SpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.Charge01Health
+{
+	page = ZSExpandedZoD, translation = Charge01Health, valueTranslation = Charge01Health,
+	type = double, min = 0.5, max = 30, default = 15,
+}
+
+option ZSExpanded.Charge01NoKnockdown
+{
+	page = ZSExpandedZoD, translation = Charge01NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Charge01NightOnly
+{
+	page = ZSExpandedZoD, translation = Charge01NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Ogre01Enable
+{
+	page = ZSExpandedZoD, translation = Ogre01Enable,
+	type = boolean, default = true,
+}
+option ZSExpanded.Ogre01SpawnChance
+{
+	page = ZSExpandedZoD, translation = Ogre01SpawnChance, valueTranslation = Ogre01SpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.Ogre01Health
+{
+	page = ZSExpandedZoD, translation = Ogre01Health, valueTranslation = Ogre01Health,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.Ogre01NoKnockdown
+{
+	page = ZSExpandedZoD, translation = Ogre01NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Ogre01NightOnly
+{
+	page = ZSExpandedZoD, translation = Ogre01NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Summoner01Enable
+{
+	page = ZSExpandedZoD, translation = Summoner01Enable,
+	type = boolean, default = true,
+}
+option ZSExpanded.Summoner01SpawnChance
+{
+	page = ZSExpandedZoD, translation = Summoner01SpawnChance, valueTranslation = Summoner01SpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.Summoner01Health
+{
+	page = ZSExpandedZoD, translation = Summoner01Health, valueTranslation = Summoner01Health,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.Summoner01NoKnockdown
+{
+	page = ZSExpandedZoD, translation = Summoner01NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Summoner01NightOnly
+{
+	page = ZSExpandedZoD, translation = Summoner01NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Toad01Enable
+{
+	page = ZSExpandedZoD, translation = Toad01Enable,
+	type = boolean, default = true,
+}
+option ZSExpanded.Toad01SpawnChance
+{
+	page = ZSExpandedZoD, translation = Toad01SpawnChance, valueTranslation = Toad01SpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.Toad01Health
+{
+	page = ZSExpandedZoD, translation = Toad01Health, valueTranslation = Toad01Health,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.Toad01NoKnockdown
+{
+	page = ZSExpandedZoD, translation = Toad01NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Toad01NightOnly
+{
+	page = ZSExpandedZoD, translation = Toad01NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Cloaker01Enable
+{
+	page = ZSExpandedZoD, translation = Cloaker01Enable,
+	type = boolean, default = true,
+}
+option ZSExpanded.Cloaker01SpawnChance
+{
+	page = ZSExpandedZoD, translation = Cloaker01SpawnChance, valueTranslation = Cloaker01SpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.Cloaker01Health
+{
+	page = ZSExpandedZoD, translation = Cloaker01Health, valueTranslation = Cloaker01Health,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.Cloaker01NoKnockdown
+{
+	page = ZSExpandedZoD, translation = Cloaker01NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Cloaker01NightOnly
+{
+	page = ZSExpandedZoD, translation = Cloaker01NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment1Enable
+{
+	page = ZSExpandedExp, translation = Experiment1Enable,
+	type = boolean, default = true,
+}
+option ZSExpanded.Experiment1SpawnChance
+{
+	page = ZSExpandedExp, translation = Experiment1SpawnChance, valueTranslation = Experiment1SpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.Experiment1Health
+{
+	page = ZSExpandedExp, translation = Experiment1Health, valueTranslation = Experiment1Health,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.Experiment1NoKnockdown
+{
+	page = ZSExpandedExp, translation = Experiment1NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Experiment1NightOnly
+{
+	page = ZSExpandedExp, translation = Experiment1NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment2Enable
+{
+	page = ZSExpandedExp, translation = Experiment2Enable,
+	type = boolean, default = true,
+}
+option ZSExpanded.Experiment2SpawnChance
+{
+	page = ZSExpandedExp, translation = Experiment2SpawnChance, valueTranslation = Experiment2SpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.Experiment2Health
+{
+	page = ZSExpandedExp, translation = Experiment2Health, valueTranslation = Experiment2Health,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.Experiment2NoKnockdown
+{
+	page = ZSExpandedExp, translation = Experiment2NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Experiment2NightOnly
+{
+	page = ZSExpandedExp, translation = Experiment2NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment3Enable
+{
+	page = ZSExpandedExp, translation = Experiment3Enable,
+	type = boolean, default = true,
+}
+option ZSExpanded.Experiment3SpawnChance
+{
+	page = ZSExpandedExp, translation = Experiment3SpawnChance, valueTranslation = Experiment3SpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.Experiment3Health
+{
+	page = ZSExpandedExp, translation = Experiment3Health, valueTranslation = Experiment3Health,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.Experiment3NoKnockdown
+{
+	page = ZSExpandedExp, translation = Experiment3NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Experiment3NightOnly
+{
+	page = ZSExpandedExp, translation = Experiment3NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment4Enable
+{
+	page = ZSExpandedExp, translation = Experiment4Enable,
+	type = boolean, default = true,
+}
+option ZSExpanded.Experiment4SpawnChance
+{
+	page = ZSExpandedExp, translation = Experiment4SpawnChance, valueTranslation = Experiment4SpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.Experiment4Health
+{
+	page = ZSExpandedExp, translation = Experiment4Health, valueTranslation = Experiment4Health,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.Experiment4NoKnockdown
+{
+	page = ZSExpandedExp, translation = Experiment4NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Experiment4NightOnly
+{
+	page = ZSExpandedExp, translation = Experiment4NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment5Enable
+{
+	page = ZSExpandedExp, translation = Experiment5Enable,
+	type = boolean, default = true,
+}
+option ZSExpanded.Experiment5SpawnChance
+{
+	page = ZSExpandedExp, translation = Experiment5SpawnChance, valueTranslation = Experiment5SpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.Experiment5Health
+{
+	page = ZSExpandedExp, translation = Experiment5Health, valueTranslation = Experiment5Health,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.Experiment5NoKnockdown
+{
+	page = ZSExpandedExp, translation = Experiment5NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Experiment5NightOnly
+{
+	page = ZSExpandedExp, translation = Experiment5NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment6Enable
+{
+	page = ZSExpandedExp, translation = Experiment6Enable,
+	type = boolean, default = true,
+}
+option ZSExpanded.Experiment6SpawnChance
+{
+	page = ZSExpandedExp, translation = Experiment6SpawnChance, valueTranslation = Experiment6SpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.Experiment6Health
+{
+	page = ZSExpandedExp, translation = Experiment6Health, valueTranslation = Experiment6Health,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.Experiment6NoKnockdown
+{
+	page = ZSExpandedExp, translation = Experiment6NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Experiment6NightOnly
+{
+	page = ZSExpandedExp, translation = Experiment6NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment7Enable
+{
+	page = ZSExpandedExp, translation = Experiment7Enable,
+	type = boolean, default = true,
+}
+option ZSExpanded.Experiment7SpawnChance
+{
+	page = ZSExpandedExp, translation = Experiment7SpawnChance, valueTranslation = Experiment7SpawnChance,
+	type = double, min = 0, max = 10, default = 1,
+}
+option ZSExpanded.Experiment7Health
+{
+	page = ZSExpandedExp, translation = Experiment7Health, valueTranslation = Experiment7Health,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.Experiment7NoKnockdown
+{
+	page = ZSExpandedExp, translation = Experiment7NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Experiment7NightOnly
+{
+	page = ZSExpandedExp, translation = Experiment7NightOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.VolatileIsRunner
+{
+	page = ZSExpandedRunner, translation = VolatileIsRunner,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.RadiationZedIsRunner
+{
+	page = ZSExpandedRunner, translation = RadiationZedIsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.RunnerZedIsRunner
+{
+	page = ZSExpandedRunner, translation = RunnerZedIsRunner,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.TankyZedIsRunner
+{
+	page = ZSExpandedRunner, translation = TankyZedIsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.WoodZedIsRunner
+{
+	page = ZSExpandedRunner, translation = WoodZedIsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Demolisher01IsRunner
+{
+	page = ZSExpandedRunner, translation = Demolisher01IsRunner,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Revenant01IsRunner
+{
+	page = ZSExpandedRunner, translation = Revenant01IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Goon01IsRunner
+{
+	page = ZSExpandedRunner, translation = Goon01IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Boomer01IsRunner
+{
+	page = ZSExpandedRunner, translation = Boomer01IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Charge01IsRunner
+{
+	page = ZSExpandedRunner, translation = Charge01IsRunner,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Ogre01IsRunner
+{
+	page = ZSExpandedRunner, translation = Ogre01IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Summoner01IsRunner
+{
+	page = ZSExpandedRunner, translation = Summoner01IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Toad01IsRunner
+{
+	page = ZSExpandedRunner, translation = Toad01IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Cloaker01IsRunner
+{
+	page = ZSExpandedRunner, translation = Cloaker01IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment1IsRunner
+{
+	page = ZSExpandedRunner, translation = Experiment1IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment2IsRunner
+{
+	page = ZSExpandedRunner, translation = Experiment2IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment3IsRunner
+{
+	page = ZSExpandedRunner, translation = Experiment3IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment4IsRunner
+{
+	page = ZSExpandedRunner, translation = Experiment4IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment5IsRunner
+{
+	page = ZSExpandedRunner, translation = Experiment5IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment6IsRunner
+{
+	page = ZSExpandedRunner, translation = Experiment6IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment7IsRunner
+{
+	page = ZSExpandedRunner, translation = Experiment7IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.VolatileIsClimber
+{
+	page = ZSExpandedClimb, translation = VolatileIsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.RadiationZedIsClimber
+{
+	page = ZSExpandedClimb, translation = RadiationZedIsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.RunnerZedIsClimber
+{
+	page = ZSExpandedClimb, translation = RunnerZedIsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.TankyZedIsClimber
+{
+	page = ZSExpandedClimb, translation = TankyZedIsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.WoodZedIsClimber
+{
+	page = ZSExpandedClimb, translation = WoodZedIsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Demolisher01IsClimber
+{
+	page = ZSExpandedClimb, translation = Demolisher01IsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Revenant01IsClimber
+{
+	page = ZSExpandedClimb, translation = Revenant01IsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Goon01IsClimber
+{
+	page = ZSExpandedClimb, translation = Goon01IsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Boomer01IsClimber
+{
+	page = ZSExpandedClimb, translation = Boomer01IsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Charge01IsClimber
+{
+	page = ZSExpandedClimb, translation = Charge01IsClimber,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Ogre01IsClimber
+{
+	page = ZSExpandedClimb, translation = Ogre01IsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Summoner01IsClimber
+{
+	page = ZSExpandedClimb, translation = Summoner01IsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Toad01IsClimber
+{
+	page = ZSExpandedClimb, translation = Toad01IsClimber,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Cloaker01IsClimber
+{
+	page = ZSExpandedClimb, translation = Cloaker01IsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment1IsClimber
+{
+	page = ZSExpandedClimb, translation = Experiment1IsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment2IsClimber
+{
+	page = ZSExpandedClimb, translation = Experiment2IsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment3IsClimber
+{
+	page = ZSExpandedClimb, translation = Experiment3IsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment4IsClimber
+{
+	page = ZSExpandedClimb, translation = Experiment4IsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment5IsClimber
+{
+	page = ZSExpandedClimb, translation = Experiment5IsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment6IsClimber
+{
+	page = ZSExpandedClimb, translation = Experiment6IsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment7IsClimber
+{
+	page = ZSExpandedClimb, translation = Experiment7IsClimber,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.VolatileIsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = VolatileIsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.RadiationZedIsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = RadiationZedIsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.RunnerZedIsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = RunnerZedIsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.TankyZedIsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = TankyZedIsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.WoodZedIsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = WoodZedIsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Demolisher01IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Demolisher01IsWallBreaker,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Revenant01IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Revenant01IsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Goon01IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Goon01IsWallBreaker,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Boomer01IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Boomer01IsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Charge01IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Charge01IsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Ogre01IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Ogre01IsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Summoner01IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Summoner01IsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Toad01IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Toad01IsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Cloaker01IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Cloaker01IsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment1IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Experiment1IsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment2IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Experiment2IsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment3IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Experiment3IsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment4IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Experiment4IsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment5IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Experiment5IsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment6IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Experiment6IsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment7IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Experiment7IsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.ToxicRadius
+{
+	page = ZSExpandedToxic, translation = ToxicRadius, valueTranslation = ToxicRadius,
+	type = integer, min = 1, max = 20, default = 5,
+}
+
+option ZSExpanded.ToxicDamage
+{
+	page = ZSExpandedToxic, translation = ToxicDamage, valueTranslation = ToxicDamage,
+	type = double, min = 0.1, max = 10, default = 0.5,
+}
+
+option ZSExpanded.ToxicCooldown
+{
+	page = ZSExpandedToxic, translation = ToxicCooldown, valueTranslation = ToxicCooldown,
+	type = integer, min = 30, max = 600, default = 120,
+}
+
+option ZSExpanded.ScreamerRadius
+{
+	page = ZSExpandedScreamer, translation = ScreamerRadius, valueTranslation = ScreamerRadius,
+	type = integer, min = 10, max = 300, default = 100,
+}
+
+option ZSExpanded.ScreamerVolume
+{
+	page = ZSExpandedScreamer, translation = ScreamerVolume, valueTranslation = ScreamerVolume,
+	type = integer, min = 10, max = 100, default = 50,
+}
+
+option ZSExpanded.ScreamerCooldown
+{
+	page = ZSExpandedScreamer, translation = ScreamerCooldown, valueTranslation = ScreamerCooldown,
+	type = integer, min = 60, max = 5000, default = 2000,
+}
+
+option ZSExpanded.VolatileIsScreamer
+{
+	page = ZSExpandedScreamer, translation = VolatileIsScreamer,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.RadiationZedIsScreamer
+{
+	page = ZSExpandedScreamer, translation = RadiationZedIsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.RunnerZedIsScreamer
+{
+	page = ZSExpandedScreamer, translation = RunnerZedIsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.TankyZedIsScreamer
+{
+	page = ZSExpandedScreamer, translation = TankyZedIsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.WoodZedIsScreamer
+{
+	page = ZSExpandedScreamer, translation = WoodZedIsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Demolisher01IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Demolisher01IsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Revenant01IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Revenant01IsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Goon01IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Goon01IsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Boomer01IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Boomer01IsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Charge01IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Charge01IsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Ogre01IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Ogre01IsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Summoner01IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Summoner01IsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Toad01IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Toad01IsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Cloaker01IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Cloaker01IsScreamer,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Experiment1IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Experiment1IsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment2IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Experiment2IsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment3IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Experiment3IsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment4IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Experiment4IsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment5IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Experiment5IsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment6IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Experiment6IsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment7IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Experiment7IsScreamer,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.ExploderRadius
+{
+	page = ZSExpandedExploder, translation = ExploderRadius, valueTranslation = ExploderRadius,
+	type = integer, min = 1, max = 50, default = 5,
+}
+
+option ZSExpanded.ExploderDamagePlayers
+{
+	page = ZSExpandedExploder, translation = ExploderDamagePlayers, valueTranslation = ExploderDamagePlayers,
+	type = double, min = 0, max = 30, default = 3,
+}
+
+option ZSExpanded.ExploderDamageZombies
+{
+	page = ZSExpandedExploder, translation = ExploderDamageZombies, valueTranslation = ExploderDamageZombies,
+	type = double, min = 0, max = 30, default = 0.2,
+}
+
+option ZSExpanded.ExploderEmitFire
+{
+	page = ZSExpandedExploder, translation = ExploderEmitFire,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.ExploderFireEnergy
+{
+	page = ZSExpandedExploder, translation = ExploderFireEnergy, valueTranslation = ExploderFireEnergy,
+	type = double, min = 0, max = 100, default = 5.0,
+}
+
+option ZSExpanded.ExploderFireDuration
+{
+	page = ZSExpandedExploder, translation = ExploderFireDuration, valueTranslation = ExploderFireDuration,
+	type = double, min = 0, max = 10000, default = 300,
+}
+
+option ZSExpanded.VolatileIsExploder
+{
+	page = ZSExpandedExploder, translation = VolatileIsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.RadiationZedIsExploder
+{
+	page = ZSExpandedExploder, translation = RadiationZedIsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.RunnerZedIsExploder
+{
+	page = ZSExpandedExploder, translation = RunnerZedIsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.TankyZedIsExploder
+{
+	page = ZSExpandedExploder, translation = TankyZedIsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.WoodZedIsExploder
+{
+	page = ZSExpandedExploder, translation = WoodZedIsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Demolisher01IsExploder
+{
+	page = ZSExpandedExploder, translation = Demolisher01IsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Revenant01IsExploder
+{
+	page = ZSExpandedExploder, translation = Revenant01IsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Goon01IsExploder
+{
+	page = ZSExpandedExploder, translation = Goon01IsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Boomer01IsExploder
+{
+	page = ZSExpandedExploder, translation = Boomer01IsExploder,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Charge01IsExploder
+{
+	page = ZSExpandedExploder, translation = Charge01IsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Ogre01IsExploder
+{
+	page = ZSExpandedExploder, translation = Ogre01IsExploder,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Summoner01IsExploder
+{
+	page = ZSExpandedExploder, translation = Summoner01IsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Toad01IsExploder
+{
+	page = ZSExpandedExploder, translation = Toad01IsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Cloaker01IsExploder
+{
+	page = ZSExpandedExploder, translation = Cloaker01IsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment1IsExploder
+{
+	page = ZSExpandedExploder, translation = Experiment1IsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment2IsExploder
+{
+	page = ZSExpandedExploder, translation = Experiment2IsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment3IsExploder
+{
+	page = ZSExpandedExploder, translation = Experiment3IsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment4IsExploder
+{
+	page = ZSExpandedExploder, translation = Experiment4IsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment5IsExploder
+{
+	page = ZSExpandedExploder, translation = Experiment5IsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment6IsExploder
+{
+	page = ZSExpandedExploder, translation = Experiment6IsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment7IsExploder
+{
+	page = ZSExpandedExploder, translation = Experiment7IsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.VolatileIsToxic
+{
+	page = ZSExpandedToxic, translation = VolatileIsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.RadiationZedIsToxic
+{
+	page = ZSExpandedToxic, translation = RadiationZedIsToxic,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.RunnerZedIsToxic
+{
+	page = ZSExpandedToxic, translation = RunnerZedIsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.TankyZedIsToxic
+{
+	page = ZSExpandedToxic, translation = TankyZedIsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.WoodZedIsToxic
+{
+	page = ZSExpandedToxic, translation = WoodZedIsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Demolisher01IsToxic
+{
+	page = ZSExpandedToxic, translation = Demolisher01IsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Revenant01IsToxic
+{
+	page = ZSExpandedToxic, translation = Revenant01IsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Goon01IsToxic
+{
+	page = ZSExpandedToxic, translation = Goon01IsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Boomer01IsToxic
+{
+	page = ZSExpandedToxic, translation = Boomer01IsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Charge01IsToxic
+{
+	page = ZSExpandedToxic, translation = Charge01IsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Ogre01IsToxic
+{
+	page = ZSExpandedToxic, translation = Ogre01IsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Summoner01IsToxic
+{
+	page = ZSExpandedToxic, translation = Summoner01IsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Toad01IsToxic
+{
+	page = ZSExpandedToxic, translation = Toad01IsToxic,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Cloaker01IsToxic
+{
+	page = ZSExpandedToxic, translation = Cloaker01IsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment1IsToxic
+{
+	page = ZSExpandedToxic, translation = Experiment1IsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment2IsToxic
+{
+	page = ZSExpandedToxic, translation = Experiment2IsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment3IsToxic
+{
+	page = ZSExpandedToxic, translation = Experiment3IsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment4IsToxic
+{
+	page = ZSExpandedToxic, translation = Experiment4IsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment5IsToxic
+{
+	page = ZSExpandedToxic, translation = Experiment5IsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment6IsToxic
+{
+	page = ZSExpandedToxic, translation = Experiment6IsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment7IsToxic
+{
+	page = ZSExpandedToxic, translation = Experiment7IsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.AlienVoices
+{
+	page = ZSExpandedAlien, translation = AlienVoices,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Grey01Enable
+{
+	page = ZSExpandedAlien, translation = Grey01Enable,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Grey01SpawnChance
+{
+	page = ZSExpandedAlien, translation = Grey01SpawnChance, valueTranslation = Grey01SpawnChance,
+	type = double, min = 0, max = 10, default = 0.02,
+}
+
+option ZSExpanded.Grey01Health
+{
+	page = ZSExpandedAlien, translation = Grey01Health, valueTranslation = Grey01Health,
+	type = double, min = 0.5, max = 30, default = 10,
+}
+
+option ZSExpanded.Grey01NoKnockdown
+{
+	page = ZSExpandedAlien, translation = Grey01NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Grey01NightOnly
+{
+	page = ZSExpandedAlien, translation = Grey01NightOnly,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.SkinnyBob01Enable
+{
+	page = ZSExpandedAlien, translation = SkinnyBob01Enable,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.SkinnyBob01SpawnChance
+{
+	page = ZSExpandedAlien, translation = SkinnyBob01SpawnChance, valueTranslation = SkinnyBob01SpawnChance,
+	type = double, min = 0, max = 10, default = 0.02,
+}
+
+option ZSExpanded.SkinnyBob01Health
+{
+	page = ZSExpandedAlien, translation = SkinnyBob01Health, valueTranslation = SkinnyBob01Health,
+	type = double, min = 0.5, max = 30, default = 5,
+}
+
+option ZSExpanded.SkinnyBob01NoKnockdown
+{
+	page = ZSExpandedAlien, translation = SkinnyBob01NoKnockdown,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.SkinnyBob01NightOnly
+{
+	page = ZSExpandedAlien, translation = SkinnyBob01NightOnly,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Grey01IsRunner
+{
+	page = ZSExpandedRunner, translation = Grey01IsRunner,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Grey01IsClimber
+{
+	page = ZSExpandedClimb, translation = Grey01IsClimber,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Grey01IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = Grey01IsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Grey01IsScreamer
+{
+	page = ZSExpandedScreamer, translation = Grey01IsScreamer,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.Grey01IsExploder
+{
+	page = ZSExpandedExploder, translation = Grey01IsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Grey01IsToxic
+{
+	page = ZSExpandedToxic, translation = Grey01IsToxic,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.SkinnyBob01IsRunner
+{
+	page = ZSExpandedRunner, translation = SkinnyBob01IsRunner,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.SkinnyBob01IsClimber
+{
+	page = ZSExpandedClimb, translation = SkinnyBob01IsClimber,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.SkinnyBob01IsWallBreaker
+{
+	page = ZSExpandedBreaker, translation = SkinnyBob01IsWallBreaker,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.SkinnyBob01IsScreamer
+{
+	page = ZSExpandedScreamer, translation = SkinnyBob01IsScreamer,
+	type = boolean, default = true,
+}
+
+option ZSExpanded.SkinnyBob01IsExploder
+{
+	page = ZSExpandedExploder, translation = SkinnyBob01IsExploder,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.SkinnyBob01IsToxic
+{
+	page = ZSExpandedToxic, translation = SkinnyBob01IsToxic,
+	type = boolean, default = false,
+}
