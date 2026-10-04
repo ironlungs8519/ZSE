@@ -27,6 +27,8 @@ local exploderEmitFire, exploderFireEnergy, exploderFireDuration = false, 5.0, 3
 local precipitationOnly = false
 -- Global night-only option (12am-6am game time); independent of precipitationOnly.
 local nightOnly = false
+-- Fog-only option: skins only appear while fog is at least FogMinIntensity dense (see ZSExpanded_Night.lua).
+local fogOnly = false
 -- Alien Voices option: when true, the aliens scream with their own clips.
 local alienVoices = true
 
@@ -142,6 +144,7 @@ local function buildSkinData()
     exploderFireDuration  = pick(vars.ExploderFireDuration, 300)
     precipitationOnly       = pick(vars.PrecipitationOnly, false)
     nightOnly               = pick(vars.NightOnly, false)
+    fogOnly                 = pick(vars.FogOnly, false)
     alienVoices             = pick(vars.AlienVoices, true)
     nightDebug              = pick(vars.NightDebug, false)
 
@@ -152,6 +155,7 @@ local function buildSkinData()
             lastNightLogged = idx
             print(string.format("[ZSExpanded] night %d: quiet=%s intensity=%.2f spawnMult=%.2f sprintChance=%.1f%%",
                 idx, tostring(nightState.quiet), nightState.intensity, nightState.spawnMult, nightState.sprintChance))
+            print(string.format("[ZSExpanded] fog right now: %.0f%%", ZSExpandedNight.fogIntensity() * 100))
         end
     end
 
@@ -621,6 +625,7 @@ local function onZombieUpdate(zombie)
     -- PrecipitationOnly (SP): si esta activo, tiramos el dado solo mientras llueve o nieva.
     if firstSight and not data and isSingleplayer() and #naturalSpawn > 0
         and (not precipitationOnly or isPrecipitating())
+        and (not fogOnly or ZSExpandedNight.isFoggy())
         and (not nightOnly or isNight()) then
         -- Night-only skins have no window in the roll by day; the others keep their own chance.
         local night = isNight()

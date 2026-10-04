@@ -6,6 +6,18 @@ option ZSExpanded.PrecipitationOnly
 	type = boolean, default = false,
 }
 
+option ZSExpanded.FogOnly
+{
+	page = ZSExpanded, translation = FogOnly,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.FogMinIntensity
+{
+	page = ZSExpanded, translation = FogMinIntensity, valueTranslation = FogMinIntensity,
+	type = integer, min = 1, max = 100, default = 60,
+}
+
 option ZSExpanded.NightOnly
 {
 	page = ZSExpanded, translation = NightOnly,

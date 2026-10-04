@@ -528,6 +528,10 @@ Sandbox_EN = {
 
 	Sandbox_PrecipitationOnly = "Spawn Only During Precipitation or Fog",
 	Sandbox_PrecipitationOnly_tooltip = "If true, none of this mod's zombie skins are eligible to spawn unless it is currently raining, snowing, or foggy.",
+	Sandbox_FogOnly = "Spawn Only During Fog",
+	Sandbox_FogOnly_tooltip = "If true, none of this mod's zombie skins are eligible to spawn unless fog is at least as dense as the setting below. Separate from the precipitation option (which also counts any trace of fog): if both are on, both must be true. Works together with the night options. Zombies already in the world are not removed when the fog lifts.",
+	Sandbox_FogMinIntensity = "Fog Density Required (%%)",
+	Sandbox_FogMinIntensity_tooltip = "How thick fog has to be for the fog option above, from 1 (any haze) to 100 (the densest fog the game produces). 60 means heavy fog only; lower it if skins almost never show up. With Night Debug on, the console log prints the current fog density so you can see what your weather does. Default 60.",
 	Sandbox_NightOnly = "Spawn Only At Night",
 	Sandbox_NightOnly_tooltip = "If true, none of this mod's zombie skins are eligible to spawn unless the game clock is inside the night window (12am-6am by default, adjustable on the Night page). Independent of the rain/snow/fog option: if both are on, both must be true. Zombies already in the world are not removed at dawn.",
 	Sandbox_TheySeeYouSkipScreamers = "Screamer Skins Ignore They See You",

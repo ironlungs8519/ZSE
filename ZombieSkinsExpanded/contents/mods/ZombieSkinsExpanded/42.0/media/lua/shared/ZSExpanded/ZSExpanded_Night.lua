@@ -76,6 +76,20 @@ local function unit(seed)
     return mix(seed) / MOD
 end
 
+-- Fog density 0..1 from the climate manager (0 = clear). An unreadable value counts as clear.
+function N.fogIntensity()
+    local ok, fog = pcall(function() return getClimateManager():getFogIntensity() end)
+    if ok and type(fog) == "number" then return fog end
+    return 0
+end
+
+-- True when fog is at least as dense as the FogMinIntensity setting (percent). The setting is the knob for how
+-- heavy "fog" has to be: light mist sits low on the scale, thick fog near the top.
+function N.isFoggy()
+    local min = clamp(opt("FogMinIntensity", 60), 1, 100) / 100
+    return N.fogIntensity() >= min
+end
+
 -- Moon brightness 0 (new) .. 1 (full) for each of the 8 phases, 0-indexed like getCurrentMoonPhase().
 local MOON_LIGHT = { [0] = 0, 0.25, 0.5, 0.75, 1, 0.75, 0.5, 0.25 }
 

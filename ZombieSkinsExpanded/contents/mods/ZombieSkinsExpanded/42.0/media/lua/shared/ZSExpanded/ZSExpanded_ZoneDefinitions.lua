@@ -84,6 +84,8 @@ local function rebuildZoneEntries()
     local precipitationOnly = vars and vars.PrecipitationOnly or false
     if precipitationOnly and not isPrecipitating() then return end
 
+    if (vars and vars.FogOnly or false) and not ZSExpandedNight.isFoggy() then return end
+
     -- Night-only: NightOnly = all skins, <Skin>NightOnly = one skin. Independent of PrecipitationOnly.
     -- The window and the per-night spawn multiplier come from ZSExpanded_Night.lua.
     local nightState = ZSExpandedNight.state()
