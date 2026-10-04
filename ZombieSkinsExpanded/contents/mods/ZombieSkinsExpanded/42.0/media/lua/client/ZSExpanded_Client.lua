@@ -10,6 +10,8 @@
 -- deben alcanzar a TODOS los clientes (sonido y dano de la explosion sobre otros jugadores)
 -- y para el dano autoritativo a otros zombies.
 
+require 'ZSExpanded/ZSExpanded_Night'
+
 local skinData = {}
 -- Skins habilitadas con su chance, para la auto-asignacion natural en singleplayer.
 local naturalSpawn = {}
@@ -41,13 +43,14 @@ local function pick(v, default)
     return v
 end
 
--- Night = 12:00-5:59 game time; an unreadable clock counts as not night.
-local NIGHT_START, NIGHT_END = 0, 6
-local function isNight()
-    local ok, hour = pcall(function() return getGameTime():getHour() end)
-    if not ok or type(hour) ~= "number" then return false end
-    return hour >= NIGHT_START and hour < NIGHT_END
-end
+-- Night window and per-night intensity live in ZSExpanded_Night.lua (shared with the server's spawn table).
+local isNight = ZSExpandedNight.isNight
+
+-- Tonight's numbers (spawn multiplier, sprint share). Refreshed once a minute in buildSkinData: they only change
+-- with the clock, the moon or the sandbox, and onZombieUpdate runs far too often to recompute them.
+local nightState = { night = false, quiet = false, intensity = 0, spawnMult = 1, sprintChance = 0 }
+local lastNightLogged = nil
+local nightDebug = false
 
 -- Comprueba si esta lloviendo, nevando, o con niebla ahora mismo (para PrecipitationOnly
 -- en SP; el equivalente en MP vive en ZSExpanded_ZoneDefinitions.lua). La niebla no tiene
@@ -140,6 +143,17 @@ local function buildSkinData()
     precipitationOnly       = pick(vars.PrecipitationOnly, false)
     nightOnly               = pick(vars.NightOnly, false)
     alienVoices             = pick(vars.AlienVoices, true)
+    nightDebug              = pick(vars.NightDebug, false)
+
+    nightState = ZSExpandedNight.state()
+    if nightDebug and nightState.night then
+        local idx = ZSExpandedNight.nightIndex()
+        if idx ~= lastNightLogged then
+            lastNightLogged = idx
+            print(string.format("[ZSExpanded] night %d: quiet=%s intensity=%.2f spawnMult=%.2f sprintChance=%.1f%%",
+                idx, tostring(nightState.quiet), nightState.intensity, nightState.spawnMult, nightState.sprintChance))
+        end
+    end
 
     local function d(healthKey, runnerKey, climberKey, wallBreakerKey, toxicKey, screamerKey, exploderKey, defaultHealth, defaultWallBreaker, defaultToxic, defaultScreamer, defaultExploder, noKnockdownKey, defaultNoKnockdown)
         return {
@@ -536,6 +550,31 @@ local function removeLightItems(zombie)
     end
 end
 
+-- Night sprinters: while the night window is open, this night's share of our skins sprints. They are put back to
+-- whatever walk type they had once the window closes (or the night turns out calm after a sandbox change).
+local function updateNightSprinter(zombie, md)
+    local wants = nightState.sprintChance > 0 and ZSExpandedNight.zombieRoll(zombie, md) < nightState.sprintChance
+    if wants then
+        if not md.ZSE_nightSprint then
+            -- remember the walk type so dawn can restore it
+            local ok, walk = pcall(function() return zombie:getVariableString("zombieWalkType") end)
+            md.ZSE_walkType = (ok and walk and walk ~= "") and walk or false
+            md.ZSE_nightSprint = true
+        end
+        zombie:setWalkType("sprint4")
+        markSprinterForPhunSprinters(zombie, md)
+    elseif md.ZSE_nightSprint then
+        md.ZSE_nightSprint = nil
+        if md.ZSE_walkType then
+            zombie:setWalkType(md.ZSE_walkType)
+        else
+            -- unknown original: makeInactive re-reads the speed from the sandbox, as PhunSprinters does
+            pcall(function() zombie:makeInactive(true) zombie:makeInactive(false) end)
+        end
+        md.ZSE_walkType = nil
+    end
+end
+
 local function onZombieUpdate(zombie)
     if not zombie or zombie:isDead() then return end
 
@@ -589,7 +628,7 @@ local function onZombieUpdate(zombie)
         local cumulative = 0
         for _, s in ipairs(naturalSpawn) do
             if night or not s.nightOnly then
-                cumulative = cumulative + s.chance
+                cumulative = cumulative + s.chance * nightState.spawnMult
                 if roll < cumulative then
                     pcall(function()
                         zombie:dressInNamedOutfit(s.outfit)
@@ -632,6 +671,8 @@ local function onZombieUpdate(zombie)
         if data.isRunner then
             zombie:setWalkType("sprint4")
             markSprinterForPhunSprinters(zombie, md)
+        else
+            updateNightSprinter(zombie, md)
         end
         md.IZSkins_ticks = 0
     end

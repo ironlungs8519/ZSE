@@ -12,6 +12,84 @@ option ZSExpanded.NightOnly
 	type = boolean, default = false,
 }
 
+option ZSExpanded.NightStartHour
+{
+	page = ZSExpandedNight, translation = NightStartHour, valueTranslation = NightStartHour,
+	type = integer, min = 0, max = 23, default = 0,
+}
+
+option ZSExpanded.NightEndHour
+{
+	page = ZSExpandedNight, translation = NightEndHour, valueTranslation = NightEndHour,
+	type = integer, min = 1, max = 24, default = 6,
+}
+
+option ZSExpanded.NightQuietChance
+{
+	page = ZSExpandedNight, translation = NightQuietChance, valueTranslation = NightQuietChance,
+	type = integer, min = 0, max = 100, default = 15,
+}
+
+option ZSExpanded.NightSprintersEnable
+{
+	page = ZSExpandedNight, translation = NightSprintersEnable,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.NightSprinterMin
+{
+	page = ZSExpandedNight, translation = NightSprinterMin, valueTranslation = NightSprinterMin,
+	type = integer, min = 0, max = 100, default = 15,
+}
+
+option ZSExpanded.NightSprinterMax
+{
+	page = ZSExpandedNight, translation = NightSprinterMax, valueTranslation = NightSprinterMax,
+	type = integer, min = 0, max = 100, default = 60,
+}
+
+option ZSExpanded.NightSpawnScale
+{
+	page = ZSExpandedNight, translation = NightSpawnScale,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.NightSpawnMin
+{
+	page = ZSExpandedNight, translation = NightSpawnMin, valueTranslation = NightSpawnMin,
+	type = integer, min = 0, max = 1000, default = 50,
+}
+
+option ZSExpanded.NightSpawnMax
+{
+	page = ZSExpandedNight, translation = NightSpawnMax, valueTranslation = NightSpawnMax,
+	type = integer, min = 0, max = 1000, default = 300,
+}
+
+option ZSExpanded.NightMoonScaling
+{
+	page = ZSExpandedNight, translation = NightMoonScaling,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.NightMoonNew
+{
+	page = ZSExpandedNight, translation = NightMoonNew, valueTranslation = NightMoonNew,
+	type = integer, min = 0, max = 1000, default = 50,
+}
+
+option ZSExpanded.NightMoonFull
+{
+	page = ZSExpandedNight, translation = NightMoonFull, valueTranslation = NightMoonFull,
+	type = integer, min = 0, max = 1000, default = 200,
+}
+
+option ZSExpanded.NightDebug
+{
+	page = ZSExpandedNight, translation = NightDebug,
+	type = boolean, default = false,
+}
+
 option ZSExpanded.TheySeeYouSkipScreamers
 {
 	page = ZSExpanded, translation = TheySeeYouSkipScreamers,

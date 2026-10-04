@@ -37,15 +37,40 @@ end
 -- Deduplicacion de eventos de sonido/explosion por si llegan desde varios clientes.
 local lastEvent = {}
 local dedupWindowMs = 1500
+local lastPrune = 0
 
 local function shouldRelay(command, args)
     local key = command .. ":" .. math.floor(args.x) .. "," .. math.floor(args.y) .. "," .. math.floor(args.z)
     local now = getTimestampMs()
+    -- Drop expired keys once a minute; every distinct square would otherwise stay in the table for the whole
+    -- life of the server.
+    if now - lastPrune > 60000 then
+        lastPrune = now
+        for k, t in pairs(lastEvent) do
+            if now - t >= dedupWindowMs then lastEvent[k] = nil end
+        end
+    end
     if lastEvent[key] and (now - lastEvent[key]) < dedupWindowMs then
         return false
     end
     lastEvent[key] = now
     return true
+end
+
+-- Clients are not trusted with numbers: damage, radius and fire come from the server's own sandbox settings. The
+-- client-sent value is only a fallback if a setting is missing, and is capped either way.
+local function serverSetting(key, clientValue, default, max)
+    local vars = SandboxVars and SandboxVars.ZSExpanded
+    local v = vars and vars[key]
+    if v == nil then v = tonumber(clientValue) or default end
+    if v > max then v = max end
+    if v < 0 then v = 0 end
+    return v
+end
+
+local function isCoordinate(args)
+    return type(args) == "table" and type(args.x) == "number" and type(args.y) == "number"
+        and type(args.z) == "number"
 end
 
 local function damagePlayersInRadius(cx, cy, cz, radius, dmg)
@@ -67,34 +92,39 @@ local function onClientCommand(module, command, player, args)
 
     if command == "ToxicDamage" then
         -- El cliente ya comprobo rango y Hazmat; danamos al jugador que envio el comando.
-        if args and args.dmg then damagePlayer(player, args.dmg) end
+        damagePlayer(player, serverSetting("ToxicDamage", args and args.dmg, 0.5, 10))
         return
     end
 
     if command == "Scream" then
-        if args and args.x ~= nil and shouldRelay(command, args) then
-            sendServerCommand("ZSExpanded", "Scream", args)
+        if isCoordinate(args) and shouldRelay(command, args) then
+            -- `voice` is the only other field clients use; anything else is dropped
+            sendServerCommand("ZSExpanded", "Scream", { x = args.x, y = args.y, z = args.z, voice = args.voice })
         end
         return
     end
 
     if command == "Explode" then
-        if not args or args.x == nil then return end
+        if not isCoordinate(args) then return end
         if not shouldRelay(command, args) then return end
-        -- Reemitir a todos los clientes (sonido + dano a zombies que cada uno simula).
-        sendServerCommand("ZSExpanded", "Explode", args)
-        -- Dano autoritativo a los jugadores en radio, 2s despues (cuadra con el sonido).
         local cx, cy, cz = args.x, args.y, args.z
-        local radius, dmg = args.radius or 5, args.dmg or 3
+        local radius = serverSetting("ExploderRadius", args.radius, 5, 50)
+        local dmg = serverSetting("ExploderDamagePlayers", args.dmg, 3, 30)
+        -- Reemitir a todos los clientes (sonido + dano a zombies que cada uno simula).
+        sendServerCommand("ZSExpanded", "Explode", { x = cx, y = cy, z = cz, radius = radius, dmg = dmg })
+        -- Dano autoritativo a los jugadores en radio, 2s despues (cuadra con el sonido).
         delaySeconds(function()
             damagePlayersInRadius(cx, cy, cz, radius, dmg)
         end, 2)
         -- Fuego autoritativo: el fuego es estado del mundo, asi que lo inicia el SERVIDOR
         -- (no cada cliente por separado, que es lo que hacia antes y no persistia en MP -
         -- el fuego iniciado solo en un cliente se perdia en el siguiente sync del mundo).
-        if args.emitFire then
-            local fireEnergy = args.fireEnergy or 5.0
-            local fireDuration = args.fireDuration or 300
+        local vars = SandboxVars and SandboxVars.ZSExpanded
+        local emitFire = vars and vars.ExploderEmitFire
+        if emitFire == nil then emitFire = args.emitFire end
+        if emitFire then
+            local fireEnergy = serverSetting("ExploderFireEnergy", args.fireEnergy, 5.0, 100)
+            local fireDuration = serverSetting("ExploderFireDuration", args.fireDuration, 300, 10000)
             delaySeconds(function()
                 local sq = getCell():getGridSquare(cx, cy, cz)
                 if sq then

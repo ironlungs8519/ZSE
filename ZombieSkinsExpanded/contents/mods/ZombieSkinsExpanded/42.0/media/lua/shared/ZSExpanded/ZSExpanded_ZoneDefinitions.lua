@@ -1,4 +1,5 @@
 require 'NPCs/ZombiesZoneDefinition'
+require 'ZSExpanded/ZSExpanded_Night'
 
 ZombiesZoneDefinition.Default = ZombiesZoneDefinition.Default or {}
 
@@ -57,14 +58,6 @@ local function isPrecipitating()
     return (rainOk and raining) or (snowOk and snowing) or (fogOk and fog and fog > 0)
 end
 
--- Night = 12:00-5:59 game time; an unreadable clock counts as not night.
-local NIGHT_START, NIGHT_END = 0, 6
-local function isNight()
-    local ok, hour = pcall(function() return getGameTime():getHour() end)
-    if not ok or type(hour) ~= "number" then return false end
-    return hour >= NIGHT_START and hour < NIGHT_END
-end
-
 local function rebuildZoneEntries()
     -- En SINGLEPLAYER no usamos la distribucion vanilla: el sandbox del mundo se aplica
     -- despues del arranque, asi que el juego "fotografia" la distribucion con los defaults
@@ -92,7 +85,9 @@ local function rebuildZoneEntries()
     if precipitationOnly and not isPrecipitating() then return end
 
     -- Night-only: NightOnly = all skins, <Skin>NightOnly = one skin. Independent of PrecipitationOnly.
-    local night = isNight()
+    -- The window and the per-night spawn multiplier come from ZSExpanded_Night.lua.
+    local nightState = ZSExpandedNight.state()
+    local night = nightState.night
     if (vars and vars.NightOnly or false) and not night then return end
 
     -- MP/dedicado: aqui el sandbox esta listo pronto y la distribucion respeta la config.
@@ -101,7 +96,7 @@ local function rebuildZoneEntries()
         local nightKey = (def.enable:gsub("Enable$", "NightOnly"))
         if pick(vars and vars[nightKey], false) and not night then enabled = false end
         if enabled then
-            local chance = pick(vars and vars[def.chance], def.default)
+            local chance = pick(vars and vars[def.chance], def.default) * nightState.spawnMult
             local entry = { name = def.name, chance = chance }
             table.insert(ZombiesZoneDefinition.Default, entry)
             table.insert(insertedEntries, entry)
