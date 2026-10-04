@@ -58,6 +58,30 @@ local function isPrecipitating()
     return (rainOk and raining) or (snowOk and snowing) or (fogOk and fog and fog > 0)
 end
 
+-- Skins that may spawn right now, as { name, chance } with the base chance. This is every spawn condition in
+-- one place: per-skin enable, rain/snow/fog, fog density, and the night-only toggles (all skins or one skin).
+-- Used by the spawn table below and by the siren call-out in ZSExpanded_SirenCall.lua.
+function ZSExpandedEligibleSkins()
+    local vars = SandboxVars and SandboxVars.ZSExpanded
+    local list = {}
+
+    if (vars and vars.PrecipitationOnly or false) and not isPrecipitating() then return list end
+    if (vars and vars.FogOnly or false) and not ZSExpandedNight.isFoggy() then return list end
+
+    local night = ZSExpandedNight.isNight()
+    if (vars and vars.NightOnly or false) and not night then return list end
+
+    for _, def in ipairs(skinDefs) do
+        local enabled = pick(vars and vars[def.enable], true)
+        local nightKey = (def.enable:gsub("Enable$", "NightOnly"))
+        if pick(vars and vars[nightKey], false) and not night then enabled = false end
+        if enabled then
+            list[#list + 1] = { name = def.name, chance = pick(vars and vars[def.chance], def.default) }
+        end
+    end
+    return list
+end
+
 local function rebuildZoneEntries()
     -- En SINGLEPLAYER no usamos la distribucion vanilla: el sandbox del mundo se aplica
     -- despues del arranque, asi que el juego "fotografia" la distribucion con los defaults
@@ -65,8 +89,6 @@ local function rebuildZoneEntries()
     -- (ZSExpanded_Client.lua) tirando el dado en vivo. Aqui, en SP, dejamos la tabla sin
     -- nuestras skins (y quitamos cualquiera que hubieramos metido).
     local sp = isSingleplayer()
-
-    local vars = SandboxVars and SandboxVars.ZSExpanded
 
     -- Remove previously inserted entries
     for _, entry in ipairs(insertedEntries) do
@@ -81,28 +103,12 @@ local function rebuildZoneEntries()
 
     if sp then return end
 
-    local precipitationOnly = vars and vars.PrecipitationOnly or false
-    if precipitationOnly and not isPrecipitating() then return end
-
-    if (vars and vars.FogOnly or false) and not ZSExpandedNight.isFoggy() then return end
-
-    -- Night-only: NightOnly = all skins, <Skin>NightOnly = one skin. Independent of PrecipitationOnly.
-    -- The window and the per-night spawn multiplier come from ZSExpanded_Night.lua.
     local nightState = ZSExpandedNight.state()
-    local night = nightState.night
-    if (vars and vars.NightOnly or false) and not night then return end
-
-    -- MP/dedicado: aqui el sandbox esta listo pronto y la distribucion respeta la config.
-    for _, def in ipairs(skinDefs) do
-        local enabled = pick(vars and vars[def.enable], true)
-        local nightKey = (def.enable:gsub("Enable$", "NightOnly"))
-        if pick(vars and vars[nightKey], false) and not night then enabled = false end
-        if enabled then
-            local chance = pick(vars and vars[def.chance], def.default) * nightState.spawnMult
-            local entry = { name = def.name, chance = chance }
-            table.insert(ZombiesZoneDefinition.Default, entry)
-            table.insert(insertedEntries, entry)
-        end
+    -- The window and the per-night spawn multiplier come from ZSExpanded_Night.lua.
+    for _, skin in ipairs(ZSExpandedEligibleSkins()) do
+        local entry = { name = skin.name, chance = skin.chance * nightState.spawnMult }
+        table.insert(ZombiesZoneDefinition.Default, entry)
+        table.insert(insertedEntries, entry)
     end
 end
 
