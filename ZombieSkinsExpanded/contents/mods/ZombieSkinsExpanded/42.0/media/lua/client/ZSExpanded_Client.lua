@@ -176,27 +176,27 @@ local function buildSkinData()
     end
 
     skinData = {
-        ["AAVolatile_Costume"]     = d("VolatileHealth", "VolatileIsRunner", "VolatileIsClimber", "VolatileIsWallBreaker", "VolatileIsToxic", "VolatileIsScreamer", "VolatileIsExploder", 2, false, false, false, false, "VolatileNoKnockdown", true),
-        ["AARadiationZed_Costume"] = d("RadiationZedHealth", "RadiationZedIsRunner", "RadiationZedIsClimber", "RadiationZedIsWallBreaker", "RadiationZedIsToxic", "RadiationZedIsScreamer", "RadiationZedIsExploder", 2, false, false, false, false, "RadiationZedNoKnockdown", true),
-        ["AARunnerZed_Costume"]    = d("RunnerZedHealth", "RunnerZedIsRunner", "RunnerZedIsClimber", "RunnerZedIsWallBreaker", "RunnerZedIsToxic", "RunnerZedIsScreamer", "RunnerZedIsExploder", 2, false, false, false, false, "RunnerZedNoKnockdown", true),
-        ["AATankyZed_Costume"]     = d("TankyZedHealth", "TankyZedIsRunner", "TankyZedIsClimber", "TankyZedIsWallBreaker", "TankyZedIsToxic", "TankyZedIsScreamer", "TankyZedIsExploder", 5, false, false, false, false, "TankyZedNoKnockdown", true),
-        ["AAWoodZed_Costume"]      = d("WoodZedHealth", "WoodZedIsRunner", "WoodZedIsClimber", "WoodZedIsWallBreaker", "WoodZedIsToxic", "WoodZedIsScreamer", "WoodZedIsExploder", 2, false, false, false, false, "WoodZedNoKnockdown", true),
-        ["AADemolisher01_Costume"] = d("Demolisher01Health", "Demolisher01IsRunner", "Demolisher01IsClimber", "Demolisher01IsWallBreaker", "Demolisher01IsToxic", "Demolisher01IsScreamer", "Demolisher01IsExploder", 3, true, false, false, false, "Demolisher01NoKnockdown", true),
-        ["AARevenant01_Costume"]   = d("Revenant01Health", "Revenant01IsRunner", "Revenant01IsClimber", "Revenant01IsWallBreaker", "Revenant01IsToxic", "Revenant01IsScreamer", "Revenant01IsExploder", 2, false, false, false, false, "Revenant01NoKnockdown", true),
-        ["AAGoon01_Costume"]       = d("Goon01Health", "Goon01IsRunner", "Goon01IsClimber", "Goon01IsWallBreaker", "Goon01IsToxic", "Goon01IsScreamer", "Goon01IsExploder", 2, false, false, false, false, "Goon01NoKnockdown", true),
-        ["AABoomer01_Costume"]     = d("Boomer01Health", "Boomer01IsRunner", "Boomer01IsClimber", "Boomer01IsWallBreaker", "Boomer01IsToxic", "Boomer01IsScreamer", "Boomer01IsExploder", 2, false, false, false, true, "Boomer01NoKnockdown", true),
-        ["AACharge01_Costume"]     = d("Charge01Health", "Charge01IsRunner", "Charge01IsClimber", "Charge01IsWallBreaker", "Charge01IsToxic", "Charge01IsScreamer", "Charge01IsExploder", 4, true, false, false, false, "Charge01NoKnockdown", true),
-        ["AAOgre01_Costume"]       = d("Ogre01Health", "Ogre01IsRunner", "Ogre01IsClimber", "Ogre01IsWallBreaker", "Ogre01IsToxic", "Ogre01IsScreamer", "Ogre01IsExploder", 8, false, false, false, false, "Ogre01NoKnockdown", true),
-        ["AASummoner01_Costume"]   = d("Summoner01Health", "Summoner01IsRunner", "Summoner01IsClimber", "Summoner01IsWallBreaker", "Summoner01IsToxic", "Summoner01IsScreamer", "Summoner01IsExploder", 3, false, false, true, false, "Summoner01NoKnockdown", true),
-        ["AAToad01_Costume"]       = d("Toad01Health", "Toad01IsRunner", "Toad01IsClimber", "Toad01IsWallBreaker", "Toad01IsToxic", "Toad01IsScreamer", "Toad01IsExploder", 2, false, true, false, false, "Toad01NoKnockdown", true),
-        ["AACloaker01_Costume"]    = d("Cloaker01Health", "Cloaker01IsRunner", "Cloaker01IsClimber", "Cloaker01IsWallBreaker", "Cloaker01IsToxic", "Cloaker01IsScreamer", "Cloaker01IsExploder", 2, false, false, false, false, "Cloaker01NoKnockdown", true),
-        ["AAExperiment1_Costume"]  = d("Experiment1Health", "Experiment1IsRunner", "Experiment1IsClimber", "Experiment1IsWallBreaker", "Experiment1IsToxic", "Experiment1IsScreamer", "Experiment1IsExploder", 3, false, false, false, false, "Experiment1NoKnockdown", true),
-        ["AAExperiment2_Costume"]  = d("Experiment2Health", "Experiment2IsRunner", "Experiment2IsClimber", "Experiment2IsWallBreaker", "Experiment2IsToxic", "Experiment2IsScreamer", "Experiment2IsExploder", 3, false, false, false, false, "Experiment2NoKnockdown", true),
-        ["AAExperiment3_Costume"]  = d("Experiment3Health", "Experiment3IsRunner", "Experiment3IsClimber", "Experiment3IsWallBreaker", "Experiment3IsToxic", "Experiment3IsScreamer", "Experiment3IsExploder", 3, false, false, false, false, "Experiment3NoKnockdown", true),
-        ["AAExperiment4_Costume"]  = d("Experiment4Health", "Experiment4IsRunner", "Experiment4IsClimber", "Experiment4IsWallBreaker", "Experiment4IsToxic", "Experiment4IsScreamer", "Experiment4IsExploder", 3, false, false, false, false, "Experiment4NoKnockdown", true),
-        ["AAExperiment5_Costume"]  = d("Experiment5Health", "Experiment5IsRunner", "Experiment5IsClimber", "Experiment5IsWallBreaker", "Experiment5IsToxic", "Experiment5IsScreamer", "Experiment5IsExploder", 3, false, false, false, false, "Experiment5NoKnockdown", true),
-        ["AAExperiment6_Costume"]  = d("Experiment6Health", "Experiment6IsRunner", "Experiment6IsClimber", "Experiment6IsWallBreaker", "Experiment6IsToxic", "Experiment6IsScreamer", "Experiment6IsExploder", 3, false, false, false, false, "Experiment6NoKnockdown", true),
-        ["AAExperiment7_Costume"]  = d("Experiment7Health", "Experiment7IsRunner", "Experiment7IsClimber", "Experiment7IsWallBreaker", "Experiment7IsToxic", "Experiment7IsScreamer", "Experiment7IsExploder", 3, false, false, false, false, "Experiment7NoKnockdown", true),
+        ["AAVolatile_Costume"]     = d("VolatileHealth", "VolatileIsRunner", "VolatileIsClimber", "VolatileIsWallBreaker", "VolatileIsToxic", "VolatileIsScreamer", "VolatileIsExploder", 5, false, false, true, false, "VolatileNoKnockdown", true),
+        ["AARadiationZed_Costume"] = d("RadiationZedHealth", "RadiationZedIsRunner", "RadiationZedIsClimber", "RadiationZedIsWallBreaker", "RadiationZedIsToxic", "RadiationZedIsScreamer", "RadiationZedIsExploder", 5, false, true, false, false, "RadiationZedNoKnockdown", true),
+        ["AARunnerZed_Costume"]    = d("RunnerZedHealth", "RunnerZedIsRunner", "RunnerZedIsClimber", "RunnerZedIsWallBreaker", "RunnerZedIsToxic", "RunnerZedIsScreamer", "RunnerZedIsExploder", 5, false, false, false, false, "RunnerZedNoKnockdown", true),
+        ["AATankyZed_Costume"]     = d("TankyZedHealth", "TankyZedIsRunner", "TankyZedIsClimber", "TankyZedIsWallBreaker", "TankyZedIsToxic", "TankyZedIsScreamer", "TankyZedIsExploder", 15, false, false, false, false, "TankyZedNoKnockdown", true),
+        ["AAWoodZed_Costume"]      = d("WoodZedHealth", "WoodZedIsRunner", "WoodZedIsClimber", "WoodZedIsWallBreaker", "WoodZedIsToxic", "WoodZedIsScreamer", "WoodZedIsExploder", 5, false, false, false, false, "WoodZedNoKnockdown", true),
+        ["AADemolisher01_Costume"] = d("Demolisher01Health", "Demolisher01IsRunner", "Demolisher01IsClimber", "Demolisher01IsWallBreaker", "Demolisher01IsToxic", "Demolisher01IsScreamer", "Demolisher01IsExploder", 30, true, false, false, false, "Demolisher01NoKnockdown", true),
+        ["AARevenant01_Costume"]   = d("Revenant01Health", "Revenant01IsRunner", "Revenant01IsClimber", "Revenant01IsWallBreaker", "Revenant01IsToxic", "Revenant01IsScreamer", "Revenant01IsExploder", 5, false, false, false, false, "Revenant01NoKnockdown", true),
+        ["AAGoon01_Costume"]       = d("Goon01Health", "Goon01IsRunner", "Goon01IsClimber", "Goon01IsWallBreaker", "Goon01IsToxic", "Goon01IsScreamer", "Goon01IsExploder", 15, true, false, false, false, "Goon01NoKnockdown", true),
+        ["AABoomer01_Costume"]     = d("Boomer01Health", "Boomer01IsRunner", "Boomer01IsClimber", "Boomer01IsWallBreaker", "Boomer01IsToxic", "Boomer01IsScreamer", "Boomer01IsExploder", 15, false, false, false, true, "Boomer01NoKnockdown", true),
+        ["AACharge01_Costume"]     = d("Charge01Health", "Charge01IsRunner", "Charge01IsClimber", "Charge01IsWallBreaker", "Charge01IsToxic", "Charge01IsScreamer", "Charge01IsExploder", 15, false, false, false, false, "Charge01NoKnockdown", true),
+        ["AAOgre01_Costume"]       = d("Ogre01Health", "Ogre01IsRunner", "Ogre01IsClimber", "Ogre01IsWallBreaker", "Ogre01IsToxic", "Ogre01IsScreamer", "Ogre01IsExploder", 5, false, false, false, true, "Ogre01NoKnockdown", true),
+        ["AASummoner01_Costume"]   = d("Summoner01Health", "Summoner01IsRunner", "Summoner01IsClimber", "Summoner01IsWallBreaker", "Summoner01IsToxic", "Summoner01IsScreamer", "Summoner01IsExploder", 5, false, false, false, false, "Summoner01NoKnockdown", true),
+        ["AAToad01_Costume"]       = d("Toad01Health", "Toad01IsRunner", "Toad01IsClimber", "Toad01IsWallBreaker", "Toad01IsToxic", "Toad01IsScreamer", "Toad01IsExploder", 5, false, true, false, false, "Toad01NoKnockdown", true),
+        ["AACloaker01_Costume"]    = d("Cloaker01Health", "Cloaker01IsRunner", "Cloaker01IsClimber", "Cloaker01IsWallBreaker", "Cloaker01IsToxic", "Cloaker01IsScreamer", "Cloaker01IsExploder", 5, false, false, true, false, "Cloaker01NoKnockdown", true),
+        ["AAExperiment1_Costume"]  = d("Experiment1Health", "Experiment1IsRunner", "Experiment1IsClimber", "Experiment1IsWallBreaker", "Experiment1IsToxic", "Experiment1IsScreamer", "Experiment1IsExploder", 5, false, false, false, false, "Experiment1NoKnockdown", true),
+        ["AAExperiment2_Costume"]  = d("Experiment2Health", "Experiment2IsRunner", "Experiment2IsClimber", "Experiment2IsWallBreaker", "Experiment2IsToxic", "Experiment2IsScreamer", "Experiment2IsExploder", 5, false, false, false, false, "Experiment2NoKnockdown", true),
+        ["AAExperiment3_Costume"]  = d("Experiment3Health", "Experiment3IsRunner", "Experiment3IsClimber", "Experiment3IsWallBreaker", "Experiment3IsToxic", "Experiment3IsScreamer", "Experiment3IsExploder", 5, false, false, false, false, "Experiment3NoKnockdown", true),
+        ["AAExperiment4_Costume"]  = d("Experiment4Health", "Experiment4IsRunner", "Experiment4IsClimber", "Experiment4IsWallBreaker", "Experiment4IsToxic", "Experiment4IsScreamer", "Experiment4IsExploder", 5, false, false, false, false, "Experiment4NoKnockdown", true),
+        ["AAExperiment5_Costume"]  = d("Experiment5Health", "Experiment5IsRunner", "Experiment5IsClimber", "Experiment5IsWallBreaker", "Experiment5IsToxic", "Experiment5IsScreamer", "Experiment5IsExploder", 5, false, false, false, false, "Experiment5NoKnockdown", true),
+        ["AAExperiment6_Costume"]  = d("Experiment6Health", "Experiment6IsRunner", "Experiment6IsClimber", "Experiment6IsWallBreaker", "Experiment6IsToxic", "Experiment6IsScreamer", "Experiment6IsExploder", 5, false, false, false, false, "Experiment6NoKnockdown", true),
+        ["AAExperiment7_Costume"]  = d("Experiment7Health", "Experiment7IsRunner", "Experiment7IsClimber", "Experiment7IsWallBreaker", "Experiment7IsToxic", "Experiment7IsScreamer", "Experiment7IsExploder", 5, false, false, false, false, "Experiment7NoKnockdown", true),
         ["AAGrey01_Costume"] = d("Grey01Health", "Grey01IsRunner", "Grey01IsClimber", "Grey01IsWallBreaker", "Grey01IsToxic", "Grey01IsScreamer", "Grey01IsExploder", 10, false, false, true, false, "Grey01NoKnockdown", true),
         ["AASkinnyBob01_Costume"] = d("SkinnyBob01Health", "SkinnyBob01IsRunner", "SkinnyBob01IsClimber", "SkinnyBob01IsWallBreaker", "SkinnyBob01IsToxic", "SkinnyBob01IsScreamer", "SkinnyBob01IsExploder", 5, false, false, true, false, "SkinnyBob01NoKnockdown", true),
     }
@@ -579,6 +579,17 @@ local function updateNightSprinter(zombie, md)
     end
 end
 
+-- Gives the zombie its health pool once, not on every interval: resetting it every few seconds healed the
+-- zombie back to full, so only burst damage ever counted. The key ties the pool to this zombie, its skin and
+-- the sandbox value, so a recycled body (new id) or a changed setting gets a fresh pool.
+local function applyHealth(zombie, md, data)
+    local ok, id = pcall(function() return zombie:getPersistentOutfitID() end)
+    local key = tostring(zombie:getOutfitName()) .. ":" .. tostring(data.health) .. ":" .. tostring(ok and id or "")
+    if md.IZSkins_hpKey == key then return end
+    md.IZSkins_hpKey = key
+    zombie:setHealth(data.health)
+end
+
 local function onZombieUpdate(zombie)
     if not zombie or zombie:isDead() then return end
 
@@ -669,10 +680,10 @@ local function onZombieUpdate(zombie)
     -- First update, then every updateInterval (recycled zombies can get bandages back).
     if md.IZSkins_ticks == 1 or md.IZSkins_ticks >= updateInterval then
         clearBodyVisuals(zombie)
+        applyHealth(zombie, md, data)
     end
 
     if md.IZSkins_ticks >= updateInterval then
-        zombie:setHealth(data.health)
         if data.isRunner then
             zombie:setWalkType("sprint4")
             markSprinterForPhunSprinters(zombie, md)

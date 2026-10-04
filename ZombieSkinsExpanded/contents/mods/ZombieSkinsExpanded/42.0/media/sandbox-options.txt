@@ -121,7 +121,7 @@ option ZSExpanded.VolatileSpawnChance
 option ZSExpanded.VolatileHealth
 {
 	page = ZSExpanded, translation = VolatileHealth, valueTranslation = VolatileHealth,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.VolatileNoKnockdown
@@ -149,7 +149,7 @@ option ZSExpanded.RadiationZedSpawnChance
 option ZSExpanded.RadiationZedHealth
 {
 	page = ZSExpanded, translation = RadiationZedHealth, valueTranslation = RadiationZedHealth,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.RadiationZedNoKnockdown
@@ -177,7 +177,7 @@ option ZSExpanded.RunnerZedSpawnChance
 option ZSExpanded.RunnerZedHealth
 {
 	page = ZSExpanded, translation = RunnerZedHealth, valueTranslation = RunnerZedHealth,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.RunnerZedNoKnockdown
@@ -205,7 +205,7 @@ option ZSExpanded.TankyZedSpawnChance
 option ZSExpanded.TankyZedHealth
 {
 	page = ZSExpanded, translation = TankyZedHealth, valueTranslation = TankyZedHealth,
-	type = double, min = 0.5, max = 30, default = 15,
+	type = double, min = 0.5, max = 500, default = 15,
 }
 
 option ZSExpanded.TankyZedNoKnockdown
@@ -233,7 +233,7 @@ option ZSExpanded.WoodZedSpawnChance
 option ZSExpanded.WoodZedHealth
 {
 	page = ZSExpanded, translation = WoodZedHealth, valueTranslation = WoodZedHealth,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.WoodZedNoKnockdown
@@ -261,7 +261,7 @@ option ZSExpanded.Demolisher01SpawnChance
 option ZSExpanded.Demolisher01Health
 {
 	page = ZSExpandedZoD, translation = Demolisher01Health, valueTranslation = Demolisher01Health,
-	type = double, min = 0.5, max = 30, default = 30,
+	type = double, min = 0.5, max = 500, default = 30,
 }
 
 option ZSExpanded.Demolisher01NoKnockdown
@@ -289,7 +289,7 @@ option ZSExpanded.Revenant01SpawnChance
 option ZSExpanded.Revenant01Health
 {
 	page = ZSExpandedZoD, translation = Revenant01Health, valueTranslation = Revenant01Health,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.Revenant01NoKnockdown
@@ -317,7 +317,7 @@ option ZSExpanded.Goon01SpawnChance
 option ZSExpanded.Goon01Health
 {
 	page = ZSExpandedZoD, translation = Goon01Health, valueTranslation = Goon01Health,
-	type = double, min = 0.5, max = 30, default = 15,
+	type = double, min = 0.5, max = 500, default = 15,
 }
 
 option ZSExpanded.Goon01NoKnockdown
@@ -345,7 +345,7 @@ option ZSExpanded.Boomer01SpawnChance
 option ZSExpanded.Boomer01Health
 {
 	page = ZSExpandedZoD, translation = Boomer01Health, valueTranslation = Boomer01Health,
-	type = double, min = 0.5, max = 30, default = 15,
+	type = double, min = 0.5, max = 500, default = 15,
 }
 
 option ZSExpanded.Boomer01NoKnockdown
@@ -373,7 +373,7 @@ option ZSExpanded.Charge01SpawnChance
 option ZSExpanded.Charge01Health
 {
 	page = ZSExpandedZoD, translation = Charge01Health, valueTranslation = Charge01Health,
-	type = double, min = 0.5, max = 30, default = 15,
+	type = double, min = 0.5, max = 500, default = 15,
 }
 
 option ZSExpanded.Charge01NoKnockdown
@@ -401,7 +401,7 @@ option ZSExpanded.Ogre01SpawnChance
 option ZSExpanded.Ogre01Health
 {
 	page = ZSExpandedZoD, translation = Ogre01Health, valueTranslation = Ogre01Health,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.Ogre01NoKnockdown
@@ -429,7 +429,7 @@ option ZSExpanded.Summoner01SpawnChance
 option ZSExpanded.Summoner01Health
 {
 	page = ZSExpandedZoD, translation = Summoner01Health, valueTranslation = Summoner01Health,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.Summoner01NoKnockdown
@@ -457,7 +457,7 @@ option ZSExpanded.Toad01SpawnChance
 option ZSExpanded.Toad01Health
 {
 	page = ZSExpandedZoD, translation = Toad01Health, valueTranslation = Toad01Health,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.Toad01NoKnockdown
@@ -485,7 +485,7 @@ option ZSExpanded.Cloaker01SpawnChance
 option ZSExpanded.Cloaker01Health
 {
 	page = ZSExpandedZoD, translation = Cloaker01Health, valueTranslation = Cloaker01Health,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.Cloaker01NoKnockdown
@@ -513,7 +513,7 @@ option ZSExpanded.Experiment1SpawnChance
 option ZSExpanded.Experiment1Health
 {
 	page = ZSExpandedExp, translation = Experiment1Health, valueTranslation = Experiment1Health,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.Experiment1NoKnockdown
@@ -541,7 +541,7 @@ option ZSExpanded.Experiment2SpawnChance
 option ZSExpanded.Experiment2Health
 {
 	page = ZSExpandedExp, translation = Experiment2Health, valueTranslation = Experiment2Health,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.Experiment2NoKnockdown
@@ -569,7 +569,7 @@ option ZSExpanded.Experiment3SpawnChance
 option ZSExpanded.Experiment3Health
 {
 	page = ZSExpandedExp, translation = Experiment3Health, valueTranslation = Experiment3Health,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.Experiment3NoKnockdown
@@ -597,7 +597,7 @@ option ZSExpanded.Experiment4SpawnChance
 option ZSExpanded.Experiment4Health
 {
 	page = ZSExpandedExp, translation = Experiment4Health, valueTranslation = Experiment4Health,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.Experiment4NoKnockdown
@@ -625,7 +625,7 @@ option ZSExpanded.Experiment5SpawnChance
 option ZSExpanded.Experiment5Health
 {
 	page = ZSExpandedExp, translation = Experiment5Health, valueTranslation = Experiment5Health,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.Experiment5NoKnockdown
@@ -653,7 +653,7 @@ option ZSExpanded.Experiment6SpawnChance
 option ZSExpanded.Experiment6Health
 {
 	page = ZSExpandedExp, translation = Experiment6Health, valueTranslation = Experiment6Health,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.Experiment6NoKnockdown
@@ -681,7 +681,7 @@ option ZSExpanded.Experiment7SpawnChance
 option ZSExpanded.Experiment7Health
 {
 	page = ZSExpandedExp, translation = Experiment7Health, valueTranslation = Experiment7Health,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.Experiment7NoKnockdown
@@ -1545,7 +1545,7 @@ option ZSExpanded.Grey01SpawnChance
 option ZSExpanded.Grey01Health
 {
 	page = ZSExpandedAlien, translation = Grey01Health, valueTranslation = Grey01Health,
-	type = double, min = 0.5, max = 30, default = 10,
+	type = double, min = 0.5, max = 500, default = 10,
 }
 
 option ZSExpanded.Grey01NoKnockdown
@@ -1575,7 +1575,7 @@ option ZSExpanded.SkinnyBob01SpawnChance
 option ZSExpanded.SkinnyBob01Health
 {
 	page = ZSExpandedAlien, translation = SkinnyBob01Health, valueTranslation = SkinnyBob01Health,
-	type = double, min = 0.5, max = 30, default = 5,
+	type = double, min = 0.5, max = 500, default = 5,
 }
 
 option ZSExpanded.SkinnyBob01NoKnockdown
