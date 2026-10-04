@@ -1,0 +1,78 @@
+module Phun
+{
+    item WristWatch_Right_MilitaryX
+    {
+        DisplayName=Military Sensor,
+        DisplayCategory = Accessory,
+        ItemType = base:clothing,
+        Type = AlarmClockClothing,
+        Weight = 0.1,
+        Icon = DigitalWatch_Black,
+        AlarmSound = WatchAlarmLoop,
+        BodyLocation = base:rightwrist,
+        ClothingExtraSubmenu = RightWrist,
+        ClothingItem = WristWatch_Right_DigitalBlack,
+        ClothingItemExtra = Phun.WristWatch_Left_MilitaryX,
+        ClothingItemExtraOption = LeftWrist,
+        Cosmetic = true,
+        MetalValue = 3.0,
+        SoundRadius = 7,
+        WorldStaticModel = DigitalWatchBlack,
+        Tags = Digital;HasMetal;MoreWhenNoZombies,
+        OBSOLETE = true,
+    }
+
+    item WristWatch_Left_MilitaryX
+    {
+        DisplayName=Military Sensor,
+        DisplayCategory = Accessory,
+        ItemType = base:clothing,
+        Type = AlarmClockClothing,
+        Weight = 0.1,
+        Icon = DigitalWatch_Black,
+        AlarmSound = WatchAlarmLoop,
+        BodyLocation = base:leftwrist,
+        ClothingExtraSubmenu = LeftWrist,
+        ClothingItem = WristWatch_Left_DigitalBlack,
+        ClothingItemExtra = Phun.WristWatch_Right_MilitaryX,
+        ClothingItemExtraOption = RightWrist,
+        Cosmetic = true,
+        MetalValue = 3.0,
+        SoundRadius = 7,
+        WorldStaticModel = DigitalWatchBlack,
+        Tags = Digital;HasMetal;MoreWhenNoZombies,
+        OBSOLETE = true,
+    }
+
+    item Military_Sensor_Left
+    {
+        DisplayName=Military Sensor,
+        DisplayCategory = Accessory,
+        ItemType = base:clothing,
+        Weight = 0.1,
+        Icon = Necklace_Choker,
+        BodyLocation = base:leftwrist,
+        ClothingExtraSubmenu = LeftWrist,
+        ClothingItem = Necklace_Choker,
+        ClothingItemExtra = Phun.Military_Sensor_Right,
+        ClothingItemExtraOption = RightWrist,
+        Cosmetic = true,
+        WorldStaticModel = Choker_Ground,
+    }  
+
+    item Military_Sensor_Right
+    {
+        DisplayName=Military Sensor,
+        DisplayCategory = Accessory,
+        ItemType = base:clothing,
+        Weight = 0.1,
+        Icon = Necklace_Choker,
+        BodyLocation = base:rightwrist,
+        ClothingExtraSubmenu = RightWrist,
+        ClothingItem = Necklace_Choker,
+        ClothingItemExtra = Phun.Military_Sensor_Left,
+        ClothingItemExtraOption = LeftWrist,
+        Cosmetic = true,
+        WorldStaticModel = Choker_Ground,
+    }       
+}
