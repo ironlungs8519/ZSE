@@ -554,12 +554,19 @@ end
 -- Gives the zombie its health pool once, not on every interval: resetting it every few seconds healed the
 -- zombie back to full, so only burst damage ever counted. The key ties the pool to this zombie, its skin and
 -- the sandbox value, so a recycled body (new id) or a changed setting gets a fresh pool.
+local function debugLog(msg)
+    if nightDebug then print("[ZSExpanded] " .. msg) end
+end
+
 local function applyHealth(zombie, md, data)
     local ok, id = pcall(function() return zombie:getPersistentOutfitID() end)
     local key = tostring(zombie:getOutfitName()) .. ":" .. tostring(data.health) .. ":" .. tostring(ok and id or "")
     if md.IZSkins_hpKey == key then return end
     md.IZSkins_hpKey = key
     zombie:setHealth(data.health)
+    -- If the engine clamps or rewrites the value, "reads" will differ from "wanted".
+    debugLog(string.format("health set on %s: wanted %s, engine reads %s", tostring(zombie:getOutfitName()),
+        tostring(data.health), tostring(zombie:getHealth())))
 end
 
 local function onZombieUpdate(zombie)
@@ -652,6 +659,12 @@ local function onZombieUpdate(zombie)
     if md.IZSkins_ticks == 1 or md.IZSkins_ticks >= updateInterval then
         clearBodyVisuals(zombie)
         applyHealth(zombie, md, data)
+        -- Debug only: follow the first few health readings of each zombie, to see when and how it drops.
+        if nightDebug and (md.IZSkins_dbgN or 0) < 6 then
+            md.IZSkins_dbgN = (md.IZSkins_dbgN or 0) + 1
+            debugLog(string.format("%s health now %s (update %d)", tostring(outfit), tostring(zombie:getHealth()),
+                md.IZSkins_ticks))
+        end
     end
 
     if md.IZSkins_ticks >= updateInterval then
@@ -698,6 +711,11 @@ end
 local function onZombieDead(zombie)
     if not zombie then return end
     local md = zombie:getModData()
+    if nightDebug and md.IZSkins_hpKey then
+        local okFire, fire = pcall(function() return zombie:isOnFire() end)
+        debugLog(string.format("%s died: health %s, on fire %s", tostring(zombie:getOutfitName()),
+            tostring(zombie:getHealth()), tostring(okFire and fire)))
+    end
     -- Never explode an A-Life NPC.
     if isALifeActor(zombie, md) then return end
     if not md.IZSkins_isExploder then return end
