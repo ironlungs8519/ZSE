@@ -702,9 +702,21 @@ option ZSExpanded.VolatileIsRunner
 	type = boolean, default = true,
 }
 
+option ZSExpanded.VolatileRunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = VolatileRunnerNightOnly,
+	type = boolean, default = false,
+}
+
 option ZSExpanded.RadiationZedIsRunner
 {
 	page = ZSExpandedRunner, translation = RadiationZedIsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.RadiationZedRunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = RadiationZedRunnerNightOnly,
 	type = boolean, default = false,
 }
 
@@ -714,9 +726,21 @@ option ZSExpanded.RunnerZedIsRunner
 	type = boolean, default = true,
 }
 
+option ZSExpanded.RunnerZedRunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = RunnerZedRunnerNightOnly,
+	type = boolean, default = false,
+}
+
 option ZSExpanded.TankyZedIsRunner
 {
 	page = ZSExpandedRunner, translation = TankyZedIsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.TankyZedRunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = TankyZedRunnerNightOnly,
 	type = boolean, default = false,
 }
 
@@ -726,15 +750,33 @@ option ZSExpanded.WoodZedIsRunner
 	type = boolean, default = false,
 }
 
+option ZSExpanded.WoodZedRunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = WoodZedRunnerNightOnly,
+	type = boolean, default = false,
+}
+
 option ZSExpanded.Demolisher01IsRunner
 {
 	page = ZSExpandedRunner, translation = Demolisher01IsRunner,
 	type = boolean, default = true,
 }
 
+option ZSExpanded.Demolisher01RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Demolisher01RunnerNightOnly,
+	type = boolean, default = false,
+}
+
 option ZSExpanded.Revenant01IsRunner
 {
 	page = ZSExpandedRunner, translation = Revenant01IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Revenant01RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Revenant01RunnerNightOnly,
 	type = boolean, default = false,
 }
 
@@ -744,9 +786,21 @@ option ZSExpanded.Goon01IsRunner
 	type = boolean, default = false,
 }
 
+option ZSExpanded.Goon01RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Goon01RunnerNightOnly,
+	type = boolean, default = false,
+}
+
 option ZSExpanded.Boomer01IsRunner
 {
 	page = ZSExpandedRunner, translation = Boomer01IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Boomer01RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Boomer01RunnerNightOnly,
 	type = boolean, default = false,
 }
 
@@ -756,9 +810,21 @@ option ZSExpanded.Charge01IsRunner
 	type = boolean, default = true,
 }
 
+option ZSExpanded.Charge01RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Charge01RunnerNightOnly,
+	type = boolean, default = false,
+}
+
 option ZSExpanded.Ogre01IsRunner
 {
 	page = ZSExpandedRunner, translation = Ogre01IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Ogre01RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Ogre01RunnerNightOnly,
 	type = boolean, default = false,
 }
 
@@ -768,9 +834,21 @@ option ZSExpanded.Summoner01IsRunner
 	type = boolean, default = false,
 }
 
+option ZSExpanded.Summoner01RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Summoner01RunnerNightOnly,
+	type = boolean, default = false,
+}
+
 option ZSExpanded.Toad01IsRunner
 {
 	page = ZSExpandedRunner, translation = Toad01IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Toad01RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Toad01RunnerNightOnly,
 	type = boolean, default = false,
 }
 
@@ -780,9 +858,21 @@ option ZSExpanded.Cloaker01IsRunner
 	type = boolean, default = false,
 }
 
+option ZSExpanded.Cloaker01RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Cloaker01RunnerNightOnly,
+	type = boolean, default = false,
+}
+
 option ZSExpanded.Experiment1IsRunner
 {
 	page = ZSExpandedRunner, translation = Experiment1IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment1RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Experiment1RunnerNightOnly,
 	type = boolean, default = false,
 }
 
@@ -792,9 +882,21 @@ option ZSExpanded.Experiment2IsRunner
 	type = boolean, default = false,
 }
 
+option ZSExpanded.Experiment2RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Experiment2RunnerNightOnly,
+	type = boolean, default = false,
+}
+
 option ZSExpanded.Experiment3IsRunner
 {
 	page = ZSExpandedRunner, translation = Experiment3IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment3RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Experiment3RunnerNightOnly,
 	type = boolean, default = false,
 }
 
@@ -804,9 +906,21 @@ option ZSExpanded.Experiment4IsRunner
 	type = boolean, default = false,
 }
 
+option ZSExpanded.Experiment4RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Experiment4RunnerNightOnly,
+	type = boolean, default = false,
+}
+
 option ZSExpanded.Experiment5IsRunner
 {
 	page = ZSExpandedRunner, translation = Experiment5IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment5RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Experiment5RunnerNightOnly,
 	type = boolean, default = false,
 }
 
@@ -816,9 +930,21 @@ option ZSExpanded.Experiment6IsRunner
 	type = boolean, default = false,
 }
 
+option ZSExpanded.Experiment6RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Experiment6RunnerNightOnly,
+	type = boolean, default = false,
+}
+
 option ZSExpanded.Experiment7IsRunner
 {
 	page = ZSExpandedRunner, translation = Experiment7IsRunner,
+	type = boolean, default = false,
+}
+
+option ZSExpanded.Experiment7RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Experiment7RunnerNightOnly,
 	type = boolean, default = false,
 }
 
@@ -1596,6 +1722,12 @@ option ZSExpanded.Grey01IsRunner
 	type = boolean, default = true,
 }
 
+option ZSExpanded.Grey01RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = Grey01RunnerNightOnly,
+	type = boolean, default = false,
+}
+
 option ZSExpanded.Grey01IsClimber
 {
 	page = ZSExpandedClimb, translation = Grey01IsClimber,
@@ -1630,6 +1762,12 @@ option ZSExpanded.SkinnyBob01IsRunner
 {
 	page = ZSExpandedRunner, translation = SkinnyBob01IsRunner,
 	type = boolean, default = true,
+}
+
+option ZSExpanded.SkinnyBob01RunnerNightOnly
+{
+	page = ZSExpandedRunner, translation = SkinnyBob01RunnerNightOnly,
+	type = boolean, default = false,
 }
 
 option ZSExpanded.SkinnyBob01IsClimber
