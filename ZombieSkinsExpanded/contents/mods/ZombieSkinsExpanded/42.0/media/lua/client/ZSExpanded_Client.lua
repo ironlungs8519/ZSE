@@ -558,15 +558,21 @@ local function debugLog(msg)
     if nightDebug then print("[ZSExpanded] " .. msg) end
 end
 
+-- Testing showed the game kills zombies a few seconds after spawning when their health is set to 45 or more (30 was
+-- fine), all of a batch in the same frame. A world saved while the cap was higher can still hold a bigger value, so
+-- it is clamped here too.
+local MAX_SAFE_HEALTH = 30
+
 local function applyHealth(zombie, md, data)
+    local health = math.min(data.health, MAX_SAFE_HEALTH)
     local ok, id = pcall(function() return zombie:getPersistentOutfitID() end)
-    local key = tostring(zombie:getOutfitName()) .. ":" .. tostring(data.health) .. ":" .. tostring(ok and id or "")
+    local key = tostring(zombie:getOutfitName()) .. ":" .. tostring(health) .. ":" .. tostring(ok and id or "")
     if md.IZSkins_hpKey == key then return end
     md.IZSkins_hpKey = key
-    zombie:setHealth(data.health)
+    zombie:setHealth(health)
     -- If the engine clamps or rewrites the value, "reads" will differ from "wanted".
     debugLog(string.format("health set on %s: wanted %s, engine reads %s", tostring(zombie:getOutfitName()),
-        tostring(data.health), tostring(zombie:getHealth())))
+        tostring(health), tostring(zombie:getHealth())))
 end
 
 local function onZombieUpdate(zombie)
