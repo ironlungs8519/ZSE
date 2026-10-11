@@ -585,7 +585,8 @@ end
 local function applyToughness(zombie, md)
     local health = zombie:getHealth()
     local last = md.ZSE_lastHealth
-    if last and health < last and health > 0 then
+    -- 0.001 keeps float rounding in the stored value from counting as damage
+    if last and last - health > 0.001 and health > 0 then
         local kept = last - (last - health) / toughness
         zombie:setHealth(kept)
         if nightDebug and (md.ZSE_toughLog or 0) < 8 then
@@ -593,7 +594,7 @@ local function applyToughness(zombie, md)
             debugLog(string.format("%s took %.2f damage, toughness x%.1f kept it at %.2f", tostring(zombie:getOutfitName()),
                 last - health, toughness, kept))
         end
-        health = kept
+        health = zombie:getHealth() -- read back: the game stores a rounded number
     end
     md.ZSE_lastHealth = health
 end
@@ -746,8 +747,12 @@ local function onZombieDead(zombie)
     local md = zombie:getModData()
     if nightDebug and md.IZSkins_hpKey then
         local okFire, fire = pcall(function() return zombie:isOnFire() end)
-        debugLog(string.format("%s died: health %s, on fire %s", tostring(zombie:getOutfitName()),
-            tostring(zombie:getHealth()), tostring(okFire and fire)))
+        -- lastTracked is the health this mod last saw while the zombie was alive: if it is far above 0, the killing
+        -- blow did more damage than that in one go (or the zombie was on the floor and finished off).
+        local okFloor, floor = pcall(function() return zombie:isOnFloor() end)
+        debugLog(string.format("%s died: health %s, last tracked %s, on floor %s, on fire %s",
+            tostring(zombie:getOutfitName()), tostring(zombie:getHealth()), tostring(md.ZSE_lastHealth),
+            tostring(okFloor and floor), tostring(okFire and fire)))
     end
     -- Never explode an A-Life NPC.
     if isALifeActor(zombie, md) then return end
