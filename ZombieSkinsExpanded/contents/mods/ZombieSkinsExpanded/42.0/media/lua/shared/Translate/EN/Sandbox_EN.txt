@@ -537,6 +537,9 @@ Sandbox_EN = {
 
 	Sandbox_ZSExpandedNight = "Zombie Skins: Expanded - Night",
 
+	Sandbox_Nightmare = "Nightmare Mode",
+	Sandbox_Nightmare_tooltip = "One switch for a night that is dangerous in two ways. Turns on both Spawn Only At Night (these zombies only appear while the night window is open) and Night Sprinters (a random share of them sprint during the night window and walk again after). Uses the window hours, calm night chance and sprinter min/max set below, and works together with the fog, rain and per-skin options. The two options can still be switched on separately; Nightmare Mode just turns both on at once. Off by default.",
+
 	Sandbox_NightStartHour = "Night Starts (hour)",
 	Sandbox_NightStartHour_tooltip = "Game hour the night window opens, 0-23 (22 = 10pm). Used by every night option in this mod, including the Night Only spawn toggles. If the start is later than the end the window runs through midnight (22 to 5 = 10pm to 5am). Default 0.",
 	Sandbox_NightEndHour = "Night Ends (hour)",

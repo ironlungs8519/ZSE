@@ -24,6 +24,12 @@ option ZSExpanded.NightOnly
 	type = boolean, default = false,
 }
 
+option ZSExpanded.Nightmare
+{
+	page = ZSExpandedNight, translation = Nightmare,
+	type = boolean, default = false,
+}
+
 option ZSExpanded.NightStartHour
 {
 	page = ZSExpandedNight, translation = NightStartHour, valueTranslation = NightStartHour,

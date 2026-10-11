@@ -38,6 +38,20 @@ function N.window()
     return s, e
 end
 
+-- Nightmare is a shortcut for two options at once: Spawn Only At Night and Night Sprinters. Either option can still
+-- be turned on by itself.
+function N.nightmare()
+    return opt("Nightmare", false) == true
+end
+
+function N.nightOnly()
+    return opt("NightOnly", false) == true or N.nightmare()
+end
+
+function N.sprintersOn()
+    return opt("NightSprintersEnable", false) == true or N.nightmare()
+end
+
 function N.isNight(hour)
     hour = hour or currentHour()
     if not hour then return false end -- an unreadable clock counts as not night
@@ -114,7 +128,7 @@ function N.state()
     if not N.isNight() then return st end
     st.night = true
 
-    local sprintOn = opt("NightSprintersEnable", false)
+    local sprintOn = N.sprintersOn()
     local spawnOn = opt("NightSpawnScale", false)
     if not sprintOn and not spawnOn then return st end
 

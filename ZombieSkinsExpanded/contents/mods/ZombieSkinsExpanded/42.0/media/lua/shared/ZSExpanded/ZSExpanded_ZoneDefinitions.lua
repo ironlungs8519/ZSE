@@ -69,7 +69,7 @@ function ZSExpandedEligibleSkins()
     if (vars and vars.FogOnly or false) and not ZSExpandedNight.isFoggy() then return list end
 
     local night = ZSExpandedNight.isNight()
-    if (vars and vars.NightOnly or false) and not night then return list end
+    if ZSExpandedNight.nightOnly() and not night then return list end
 
     for _, def in ipairs(skinDefs) do
         local enabled = pick(vars and vars[def.enable], true)
