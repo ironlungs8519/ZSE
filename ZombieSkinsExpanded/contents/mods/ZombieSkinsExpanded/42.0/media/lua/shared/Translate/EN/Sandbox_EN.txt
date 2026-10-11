@@ -496,21 +496,14 @@ Sandbox_EN = {
 	Sandbox_ZSExpandedNight = "Zombie Skins: Expanded - Night",
 
 	Sandbox_Nightmare = "Nightmare Mode",
-	Sandbox_Nightmare_tooltip = "One switch for a night that is dangerous in two ways. Turns on both Spawn Only At Night (these zombies only appear while the night window is open) and Night Sprinters (a random share of them sprint during the night window and walk again after). Uses the window hours, calm night chance and sprinter min/max set below, and works together with the fog, rain and per-skin options. The two options can still be switched on separately; Nightmare Mode just turns both on at once. Off by default.",
+	Sandbox_Nightmare_tooltip = "One switch for a night that is dangerous in two ways. Turns on both Spawn Only At Night (these zombies only appear while the night window is open) and Night Spawn Scaling (while the window is open, more or fewer of them appear, by an amount rolled fresh every night between the min and max below). Uses the window hours and calm night chance set on this page, and works together with the fog, rain and per-skin options. The two options can still be switched on separately; Nightmare Mode just turns both on at once. Off by default.",
 
 	Sandbox_NightStartHour = "Night Starts (hour)",
 	Sandbox_NightStartHour_tooltip = "Game hour the night window opens, 0-23 (22 = 10pm). Used by every night option in this mod, including the Night Only spawn toggles. If the start is later than the end the window runs through midnight (22 to 5 = 10pm to 5am). Default 0.",
 	Sandbox_NightEndHour = "Night Ends (hour)",
 	Sandbox_NightEndHour_tooltip = "Game hour the night window closes, 1-24. The window is open up to, but not including, this hour (6 = until 6:00 am). Start equal to end means the whole day counts as night. Default 6.",
 	Sandbox_NightQuietChance = "Calm Night Chance (%%)",
-	Sandbox_NightQuietChance_tooltip = "Each night is rolled once. This is the chance that a night is calm: no night sprinters, and skins spawn at the low end of the spawn range. Applies only if Night Sprinters or Night Spawn Scaling is on. Default 15.",
-
-	Sandbox_NightSprintersEnable = "Night Sprinters",
-	Sandbox_NightSprintersEnable_tooltip = "If true, during the night window a random share of this mod's zombies sprint, and go back to their normal speed at the end of the window. The share is re-rolled every night between the min and max below. Skins that are already set to Runner always sprint. Zombies of other mods and vanilla zombies are not touched.",
-	Sandbox_NightSprinterMin = "Night Sprinters: Min Share (%%)",
-	Sandbox_NightSprinterMin_tooltip = "Lowest share of this mod's zombies that can sprint on a normal night. Default 15.",
-	Sandbox_NightSprinterMax = "Night Sprinters: Max Share (%%)",
-	Sandbox_NightSprinterMax_tooltip = "Highest share of this mod's zombies that can sprint on a bad night. Each night lands somewhere between min and max. Default 60.",
+	Sandbox_NightQuietChance_tooltip = "Each night is rolled once. This is the chance that a night is calm: skins spawn at the low end of the Night Spawn Scaling range. Applies only if Night Spawn Scaling or Nightmare Mode is on. Default 15.",
 
 	Sandbox_NightSpawnScale = "Night Spawn Scaling",
 	Sandbox_NightSpawnScale_tooltip = "If true, skin spawn chances are multiplied during the night window by an amount rolled every night between the min and max below. Outside the window spawn chances are unchanged. The per-skin chances stay the base values.",
@@ -518,13 +511,6 @@ Sandbox_EN = {
 	Sandbox_NightSpawnMin_tooltip = "Spawn chance multiplier on the quietest nights. 50 halves the chances, 100 leaves them as they are. Default 50.",
 	Sandbox_NightSpawnMax = "Night Spawn Scaling: Max (%%)",
 	Sandbox_NightSpawnMax_tooltip = "Spawn chance multiplier on the worst nights. 300 triples the chances. Default 300.",
-
-	Sandbox_NightMoonScaling = "Moon Phase Scaling",
-	Sandbox_NightMoonScaling_tooltip = "If true, the moon phase scales both night options above: tonight's sprinter share and spawn multiplier are multiplied by a value between the new moon and full moon settings below (the phases in between are blended).",
-	Sandbox_NightMoonNew = "Moon Phase: New Moon (%%)",
-	Sandbox_NightMoonNew_tooltip = "Multiplier on a new moon. 50 halves the night effects. Default 50.",
-	Sandbox_NightMoonFull = "Moon Phase: Full Moon (%%)",
-	Sandbox_NightMoonFull_tooltip = "Multiplier on a full moon. 200 doubles the night effects. Default 200.",
 
 	Sandbox_NightDebug = "Night Debug Log",
 	Sandbox_NightDebug_tooltip = "Print the numbers rolled for each night (intensity, spawn multiplier, sprinter share) to the console log, once per night.",

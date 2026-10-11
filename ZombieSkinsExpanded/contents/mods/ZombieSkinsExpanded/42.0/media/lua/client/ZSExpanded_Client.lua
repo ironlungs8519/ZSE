@@ -48,9 +48,9 @@ end
 -- Night window and per-night intensity live in ZSExpanded_Night.lua (shared with the server's spawn table).
 local isNight = ZSExpandedNight.isNight
 
--- Tonight's numbers (spawn multiplier, sprint share). Refreshed once a minute in buildSkinData: they only change
--- with the clock, the moon or the sandbox, and onZombieUpdate runs far too often to recompute them.
-local nightState = { night = false, quiet = false, intensity = 0, spawnMult = 1, sprintChance = 0 }
+-- Tonight's numbers (spawn multiplier). Refreshed once a minute in buildSkinData: they only change with the clock
+-- or the sandbox, and onZombieUpdate runs far too often to recompute them.
+local nightState = { night = false, quiet = false, intensity = 0, spawnMult = 1 }
 local lastNightLogged = nil
 local nightDebug = false
 
@@ -153,8 +153,8 @@ local function buildSkinData()
         local idx = ZSExpandedNight.nightIndex()
         if idx ~= lastNightLogged then
             lastNightLogged = idx
-            print(string.format("[ZSExpanded] night %d: quiet=%s intensity=%.2f spawnMult=%.2f sprintChance=%.1f%%",
-                idx, tostring(nightState.quiet), nightState.intensity, nightState.spawnMult, nightState.sprintChance))
+            print(string.format("[ZSExpanded] night %d: quiet=%s intensity=%.2f spawnMult=%.2f",
+                idx, tostring(nightState.quiet), nightState.intensity, nightState.spawnMult))
             print(string.format("[ZSExpanded] fog right now: %.0f%%", ZSExpandedNight.fogIntensity() * 100))
         end
     end
@@ -554,31 +554,6 @@ local function removeLightItems(zombie)
     end
 end
 
--- Night sprinters: while the night window is open, this night's share of our skins sprints. They are put back to
--- whatever walk type they had once the window closes (or the night turns out calm after a sandbox change).
-local function updateNightSprinter(zombie, md)
-    local wants = nightState.sprintChance > 0 and ZSExpandedNight.zombieRoll(zombie, md) < nightState.sprintChance
-    if wants then
-        if not md.ZSE_nightSprint then
-            -- remember the walk type so dawn can restore it
-            local ok, walk = pcall(function() return zombie:getVariableString("zombieWalkType") end)
-            md.ZSE_walkType = (ok and walk and walk ~= "") and walk or false
-            md.ZSE_nightSprint = true
-        end
-        zombie:setWalkType("sprint4")
-        markSprinterForPhunSprinters(zombie, md)
-    elseif md.ZSE_nightSprint then
-        md.ZSE_nightSprint = nil
-        if md.ZSE_walkType then
-            zombie:setWalkType(md.ZSE_walkType)
-        else
-            -- unknown original: makeInactive re-reads the speed from the sandbox, as PhunSprinters does
-            pcall(function() zombie:makeInactive(true) zombie:makeInactive(false) end)
-        end
-        md.ZSE_walkType = nil
-    end
-end
-
 -- Gives the zombie its health pool once, not on every interval: resetting it every few seconds healed the
 -- zombie back to full, so only burst damage ever counted. The key ties the pool to this zombie, its skin and
 -- the sandbox value, so a recycled body (new id) or a changed setting gets a fresh pool.
@@ -687,8 +662,6 @@ local function onZombieUpdate(zombie)
         if data.isRunner then
             zombie:setWalkType("sprint4")
             markSprinterForPhunSprinters(zombie, md)
-        else
-            updateNightSprinter(zombie, md)
         end
         md.IZSkins_ticks = 0
     end

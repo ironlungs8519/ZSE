@@ -1,8 +1,8 @@
--- Night helper shared by the zone definitions (spawn side) and the client (sprint side).
+-- Night helper shared by the zone definitions (spawn side) and the client.
 --
 -- One configurable night window, plus a per-night "intensity" that is rolled once per night. Every client and the
 -- server derive it from the in-game date alone, so they all agree without sending anything over the network.
--- Intensity drives two things: how many of our skins spawn (spawn multiplier) and what share of them sprint.
+-- Intensity drives how many of our skins spawn (the spawn multiplier).
 
 ZSExpandedNight = ZSExpandedNight or {}
 local N = ZSExpandedNight
@@ -38,8 +38,8 @@ function N.window()
     return s, e
 end
 
--- Nightmare is a shortcut for two options at once: Spawn Only At Night and Night Sprinters. Either option can still
--- be turned on by itself.
+-- Nightmare is a shortcut for two options at once: Spawn Only At Night and Night Spawn Scaling. Either option can
+-- still be turned on by itself.
 function N.nightmare()
     return opt("Nightmare", false) == true
 end
@@ -48,8 +48,8 @@ function N.nightOnly()
     return opt("NightOnly", false) == true or N.nightmare()
 end
 
-function N.sprintersOn()
-    return opt("NightSprintersEnable", false) == true or N.nightmare()
+function N.spawnScaleOn()
+    return opt("NightSpawnScale", false) == true or N.nightmare()
 end
 
 function N.isNight(hour)
@@ -104,72 +104,28 @@ function N.isFoggy()
     return N.fogIntensity() >= min
 end
 
--- Moon brightness 0 (new) .. 1 (full) for each of the 8 phases, 0-indexed like getCurrentMoonPhase().
-local MOON_LIGHT = { [0] = 0, 0.25, 0.5, 0.75, 1, 0.75, 0.5, 0.25 }
-
-local function moonMultiplier()
-    if not opt("NightMoonScaling", false) then return 1 end
-    local ok, phase = pcall(function() return getClimateMoon():getCurrentMoonPhase() end)
-    local light = ok and MOON_LIGHT[phase] or nil
-    if not light then return 1 end
-    local new = opt("NightMoonNew", 50) / 100
-    local full = opt("NightMoonFull", 200) / 100
-    return new + (full - new) * light
-end
-
 -- Everything that depends on tonight. The result is a plain table the caller may keep for the current minute.
 --   night        inside the window
---   quiet        a calm night: nothing extra happens
+--   quiet        a calm night: skins spawn at the low end of the range
 --   intensity    0..1, how bad tonight is
 --   spawnMult    multiplier for skin spawn chances (1 outside the window or with the option off)
---   sprintChance percent of our skins that sprint tonight (0 when the feature is off)
 function N.state()
-    local st = { night = false, quiet = false, intensity = 0, spawnMult = 1, sprintChance = 0 }
+    local st = { night = false, quiet = false, intensity = 0, spawnMult = 1 }
     if not N.isNight() then return st end
     st.night = true
 
-    local sprintOn = N.sprintersOn()
-    local spawnOn = opt("NightSpawnScale", false)
-    if not sprintOn and not spawnOn then return st end
+    if not N.spawnScaleOn() then return st end
 
     local idx = N.nightIndex()
     local quietChance = clamp(opt("NightQuietChance", 15), 0, 100)
     st.quiet = unit(idx * 3 + 1) * 100 < quietChance
     st.intensity = st.quiet and 0 or unit(idx * 3 + 2)
 
-    local moon = moonMultiplier()
-
-    if spawnOn then
-        local lo, hi = opt("NightSpawnMin", 50), opt("NightSpawnMax", 300)
-        if lo > hi then lo, hi = hi, lo end
-        -- A calm night spawns at the low end instead of at zero, so the skins never vanish entirely.
-        st.spawnMult = math.max(0, (lo + (hi - lo) * st.intensity) / 100 * moon)
-    end
-
-    if sprintOn and not st.quiet then
-        local lo, hi = opt("NightSprinterMin", 15), opt("NightSprinterMax", 60)
-        if lo > hi then lo, hi = hi, lo end
-        st.sprintChance = clamp((lo + (hi - lo) * st.intensity) * moon, 0, 100)
-    end
-
+    local lo, hi = opt("NightSpawnMin", 50), opt("NightSpawnMax", 300)
+    if lo > hi then lo, hi = hi, lo end
+    -- A calm night spawns at the low end instead of at zero, so the skins never vanish entirely.
+    st.spawnMult = math.max(0, (lo + (hi - lo) * st.intensity) / 100)
     return st
-end
-
--- Stable per-zombie roll in [0, 100) for tonight, so a zombie keeps its answer when it changes hands between
--- clients. Falls back to a random roll kept in modData if the game does not give us a persistent id.
-function N.zombieRoll(zombie, md)
-    local idx = N.nightIndex()
-    if md.ZSE_rollNight == idx and md.ZSE_roll then return md.ZSE_roll end
-    local ok, id = pcall(function() return zombie:getPersistentOutfitID() end)
-    local roll
-    if ok and type(id) == "number" then
-        roll = unit(id * 7 + idx) * 100
-    else
-        roll = ZombRand(10000) / 100
-    end
-    md.ZSE_rollNight = idx
-    md.ZSE_roll = roll
-    return roll
 end
 
 return N
