@@ -201,13 +201,6 @@ local function buildSkinData()
         ["AASkinnyBob01_Costume"] = d("SkinnyBob01Health", "SkinnyBob01IsRunner", "SkinnyBob01IsClimber", "SkinnyBob01IsWallBreaker", "SkinnyBob01IsToxic", "SkinnyBob01IsScreamer", "SkinnyBob01IsExploder", 5, false, false, true, false, "SkinnyBob01NoKnockdown", true),
     }
 
-    -- Runner Only At Night: <Skin>RunnerNightOnly makes that skin's Runner setting apply only inside the night window.
-    for outfitName, data in pairs(skinData) do
-        local base = tostring(outfitName):gsub("^AA", "")
-        base = base:gsub("_Costume$", "")
-        data.runnerNightOnly = pick(vars[base .. "RunnerNightOnly"], false)
-    end
-
     -- Reconstruye la lista de auto-asignacion (SP): cada skin habilitada con SpawnChance > 0.
     -- El outfit "AAXxx_Costume" mapea a las claves de sandbox "XxxEnable"/"XxxSpawnChance".
     naturalSpawn = {}
@@ -561,9 +554,10 @@ local function removeLightItems(zombie)
     end
 end
 
--- Sprint on/off for skins that only sprint some of the time (night-only runners and night sprinters). On saves the
--- zombie's walk type so it can be put back when the sprint ends. Skins that always run never go through here.
-local function applySprint(zombie, md, wants)
+-- Night sprinters: while the night window is open, this night's share of our skins sprints. They are put back to
+-- whatever walk type they had once the window closes (or the night turns out calm after a sandbox change).
+local function updateNightSprinter(zombie, md)
+    local wants = nightState.sprintChance > 0 and ZSExpandedNight.zombieRoll(zombie, md) < nightState.sprintChance
     if wants then
         if not md.ZSE_nightSprint then
             -- remember the walk type so dawn can restore it
@@ -583,14 +577,6 @@ local function applySprint(zombie, md, wants)
         end
         md.ZSE_walkType = nil
     end
-end
-
--- Night sprinters: while the night window is open, this night's share of our skins sprints, and so do runner skins
--- set to "Runner Only At Night". Everything goes back to its normal walk once the window closes.
-local function updateNightSprinter(zombie, md, data)
-    local wants = (data.isRunner and data.runnerNightOnly and nightState.night)
-        or (nightState.sprintChance > 0 and ZSExpandedNight.zombieRoll(zombie, md) < nightState.sprintChance)
-    applySprint(zombie, md, wants == true)
 end
 
 -- Gives the zombie its health pool once, not on every interval: resetting it every few seconds healed the
@@ -698,11 +684,11 @@ local function onZombieUpdate(zombie)
     end
 
     if md.IZSkins_ticks >= updateInterval then
-        if data.isRunner and not data.runnerNightOnly then
+        if data.isRunner then
             zombie:setWalkType("sprint4")
             markSprinterForPhunSprinters(zombie, md)
         else
-            updateNightSprinter(zombie, md, data)
+            updateNightSprinter(zombie, md)
         end
         md.IZSkins_ticks = 0
     end
