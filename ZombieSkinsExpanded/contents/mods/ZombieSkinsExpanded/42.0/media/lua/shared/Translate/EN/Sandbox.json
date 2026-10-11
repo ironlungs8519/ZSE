@@ -487,7 +487,7 @@
   "Sandbox_NightSpawnMax": "Night Spawn Scaling: Max (%%)",
   "Sandbox_NightSpawnMax_tooltip": "Spawn chance multiplier on the worst nights. 300 triples the chances. Default 300.",
   "Sandbox_NightDebug": "Night Debug Log",
-  "Sandbox_NightDebug_tooltip": "Print the numbers rolled for each night (intensity, spawn multiplier, sprinter share) to the console log, once per night.",
+  "Sandbox_NightDebug_tooltip": "Print the numbers rolled for each night (intensity and spawn multiplier) to the console log, once per night.",
   "Sandbox_PrecipitationOnly": "Spawn Only During Precipitation or Fog",
   "Sandbox_PrecipitationOnly_tooltip": "If true, none of this mod's zombie skins are eligible to spawn unless it is currently raining, snowing, or foggy.",
   "Sandbox_FogOnly": "Spawn Only During Fog",
