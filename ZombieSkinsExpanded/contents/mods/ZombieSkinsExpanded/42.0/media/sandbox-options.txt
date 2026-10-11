@@ -6,18 +6,6 @@ option ZSExpanded.PrecipitationOnly
 	type = boolean, default = false,
 }
 
-option ZSExpanded.FogOnly
-{
-	page = ZSExpanded, translation = FogOnly,
-	type = boolean, default = false,
-}
-
-option ZSExpanded.FogMinIntensity
-{
-	page = ZSExpanded, translation = FogMinIntensity, valueTranslation = FogMinIntensity,
-	type = integer, min = 1, max = 100, default = 60,
-}
-
 option ZSExpanded.NightOnly
 {
 	page = ZSExpanded, translation = NightOnly,
@@ -64,6 +52,12 @@ option ZSExpanded.NightSpawnMax
 {
 	page = ZSExpandedNight, translation = NightSpawnMax, valueTranslation = NightSpawnMax,
 	type = integer, min = 0, max = 1000, default = 300,
+}
+
+option ZSExpanded.FullMoonDoubleSpawn
+{
+	page = ZSExpandedNight, translation = FullMoonDoubleSpawn,
+	type = boolean, default = false,
 }
 
 option ZSExpanded.NightDebug

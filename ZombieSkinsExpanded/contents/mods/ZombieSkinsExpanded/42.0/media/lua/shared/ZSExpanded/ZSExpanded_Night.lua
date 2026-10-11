@@ -90,41 +90,43 @@ local function unit(seed)
     return mix(seed) / MOD
 end
 
--- Fog density 0..1 from the climate manager (0 = clear). An unreadable value counts as clear.
-function N.fogIntensity()
-    local ok, fog = pcall(function() return getClimateManager():getFogIntensity() end)
-    if ok and type(fog) == "number" then return fog end
-    return 0
+-- Current moon phase, 0 (new) to 7, with 4 being the full moon. nil if the game does not give one.
+function N.moonPhase()
+    local ok, phase = pcall(function() return getClimateMoon():getCurrentMoonPhase() end)
+    if ok and type(phase) == "number" then return phase end
+    return nil
 end
 
--- True when fog is at least as dense as the FogMinIntensity setting (percent). The setting is the knob for how
--- heavy "fog" has to be: light mist sits low on the scale, thick fog near the top.
-function N.isFoggy()
-    local min = clamp(opt("FogMinIntensity", 60), 1, 100) / 100
-    return N.fogIntensity() >= min
-end
+local FULL_MOON = 4
 
 -- Everything that depends on tonight. The result is a plain table the caller may keep for the current minute.
 --   night        inside the window
 --   quiet        a calm night: skins spawn at the low end of the range
 --   intensity    0..1, how bad tonight is
---   spawnMult    multiplier for skin spawn chances (1 outside the window or with the option off)
+--   spawnMult    multiplier for skin spawn chances (1 outside the window or with the options off)
 function N.state()
     local st = { night = false, quiet = false, intensity = 0, spawnMult = 1 }
     if not N.isNight() then return st end
     st.night = true
 
-    if not N.spawnScaleOn() then return st end
+    local scaleOn = N.spawnScaleOn()
+    local fullMoonOn = opt("FullMoonDoubleSpawn", false) == true
+    if not scaleOn and not fullMoonOn then return st end
 
-    local idx = N.nightIndex()
-    local quietChance = clamp(opt("NightQuietChance", 15), 0, 100)
-    st.quiet = unit(idx * 3 + 1) * 100 < quietChance
-    st.intensity = st.quiet and 0 or unit(idx * 3 + 2)
+    if scaleOn then
+        local idx = N.nightIndex()
+        local quietChance = clamp(opt("NightQuietChance", 15), 0, 100)
+        st.quiet = unit(idx * 3 + 1) * 100 < quietChance
+        st.intensity = st.quiet and 0 or unit(idx * 3 + 2)
 
-    local lo, hi = opt("NightSpawnMin", 50), opt("NightSpawnMax", 300)
-    if lo > hi then lo, hi = hi, lo end
-    -- A calm night spawns at the low end instead of at zero, so the skins never vanish entirely.
-    st.spawnMult = math.max(0, (lo + (hi - lo) * st.intensity) / 100)
+        local lo, hi = opt("NightSpawnMin", 50), opt("NightSpawnMax", 300)
+        if lo > hi then lo, hi = hi, lo end
+        -- A calm night spawns at the low end instead of at zero, so the skins never vanish entirely.
+        st.spawnMult = math.max(0, (lo + (hi - lo) * st.intensity) / 100)
+    end
+
+    -- Full moon doubles whatever the night would otherwise spawn.
+    if fullMoonOn and N.moonPhase() == FULL_MOON then st.spawnMult = st.spawnMult * 2 end
     return st
 end
 

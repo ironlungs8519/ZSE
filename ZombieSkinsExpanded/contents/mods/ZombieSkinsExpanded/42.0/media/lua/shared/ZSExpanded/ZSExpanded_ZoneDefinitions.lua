@@ -59,14 +59,13 @@ local function isPrecipitating()
 end
 
 -- Skins that may spawn right now, as { name, chance } with the base chance. This is every spawn condition in
--- one place: per-skin enable, rain/snow/fog, fog density, and the night-only toggles (all skins or one skin).
+-- one place: per-skin enable, rain/snow/fog, and the night-only toggles (all skins or one skin).
 -- Used by the spawn table below and by the siren call-out in ZSExpanded_SirenCall.lua.
 function ZSExpandedEligibleSkins()
     local vars = SandboxVars and SandboxVars.ZSExpanded
     local list = {}
 
     if (vars and vars.PrecipitationOnly or false) and not isPrecipitating() then return list end
-    if (vars and vars.FogOnly or false) and not ZSExpandedNight.isFoggy() then return list end
 
     local night = ZSExpandedNight.isNight()
     if ZSExpandedNight.nightOnly() and not night then return list end
