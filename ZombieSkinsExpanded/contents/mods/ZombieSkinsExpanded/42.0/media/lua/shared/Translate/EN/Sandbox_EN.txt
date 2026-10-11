@@ -10,6 +10,9 @@ Sandbox_EN = {
 	Sandbox_ZSExpandedExp = "Zombie Skins: Expanded - Experiments",
 	Sandbox_ZSExpandedAlien = "Zombie Skins: Expanded - Aliens",
 
+	Sandbox_ToughnessMultiplier = "Toughness Multiplier",
+	Sandbox_ToughnessMultiplier_tooltip = "EXPERIMENTAL. Makes every zombie skin from this mod take more damage to kill. Each skin's health stops at 30 because the game kills zombies set higher, so this works another way: whenever a zombie loses health, it gets part of the loss back, so the damage counts for 1 divided by this number. At 3, a zombie with 30 health takes about as much damage as one with 90. 1 means off. Fire, blasts and falls are reduced too. Heavy single hits, one-hit kills and knockdowns may not behave exactly as the number suggests. Use the Debug Log on the Night page to see it working.",
+
 	Sandbox_VolatileEnable = "Volatile: Enabled",
 	Sandbox_VolatileEnable_tooltip = "Allow Volatile zombies to spawn.",
 	Sandbox_VolatileSpawnChance = "Volatile: Spawn Chance",

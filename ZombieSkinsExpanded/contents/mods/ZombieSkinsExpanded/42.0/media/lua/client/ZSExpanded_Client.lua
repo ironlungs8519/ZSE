@@ -51,6 +51,9 @@ local isNight = ZSExpandedNight.isNight
 local nightState = { night = false, quiet = false, intensity = 0, spawnMult = 1 }
 local lastNightLogged = nil
 local nightDebug = false
+-- Toughness Multiplier: the game's health tops out around 30 for these zombies, so extra toughness is done by giving
+-- back part of the damage each zombie takes. 1 = off.
+local toughness = 1
 
 -- Comprueba si esta lloviendo, nevando, o con niebla ahora mismo (para PrecipitationOnly
 -- en SP; el equivalente en MP vive en ZSExpanded_ZoneDefinitions.lua). La niebla no tiene
@@ -144,6 +147,7 @@ local function buildSkinData()
     nightOnly               = ZSExpandedNight.nightOnly()
     alienVoices             = pick(vars.AlienVoices, true)
     nightDebug              = pick(vars.NightDebug, false)
+    toughness               = math.max(1, pick(vars.ToughnessMultiplier, 1))
 
     nightState = ZSExpandedNight.state()
     if nightDebug and nightState.night then
@@ -575,6 +579,25 @@ local function applyHealth(zombie, md, data)
         tostring(health), tostring(zombie:getHealth())))
 end
 
+-- With Toughness Multiplier above 1, whenever a zombie's health has dropped since the last update, give back the share
+-- of that loss the multiplier cancels: a loss of d becomes d / toughness. Health that went up is just accepted (that is
+-- how the starting pool arrives). A zombie already at 0 or below stays dead. Fire, blasts and falls count too.
+local function applyToughness(zombie, md)
+    local health = zombie:getHealth()
+    local last = md.ZSE_lastHealth
+    if last and health < last and health > 0 then
+        local kept = last - (last - health) / toughness
+        zombie:setHealth(kept)
+        if nightDebug and (md.ZSE_toughLog or 0) < 8 then
+            md.ZSE_toughLog = (md.ZSE_toughLog or 0) + 1
+            debugLog(string.format("%s took %.2f damage, toughness x%.1f kept it at %.2f", tostring(zombie:getOutfitName()),
+                last - health, toughness, kept))
+        end
+        health = kept
+    end
+    md.ZSE_lastHealth = health
+end
+
 local function onZombieUpdate(zombie)
     if not zombie or zombie:isDead() then return end
 
@@ -642,6 +665,10 @@ local function onZombieUpdate(zombie)
     end
 
     if not data then return end
+
+    if toughness > 1 then
+        applyToughness(zombie, md)
+    end
 
     if data.isClimber then
         climbWallFunction(zombie)
