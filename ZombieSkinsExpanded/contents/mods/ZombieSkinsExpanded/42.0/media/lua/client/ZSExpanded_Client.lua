@@ -30,6 +30,7 @@ local isNight = ZSExpandedNight.isNight
 local nightState = { night = false, quiet = false, intensity = 0, spawnMult = 1 }
 local lastNightLogged = nil
 local nightDebug = false
+local worldSpeed = nil
 
 local function isPrecipitating()
     local ok, climate = pcall(getClimateManager)
@@ -70,6 +71,9 @@ local function isMarkedSpecialZed(zombie, md)
     if isALifeActor(zombie, md) then return true end
 
     if md.brain ~= nil and md.brain ~= "ZSExpanded" then return true end
+    local okHuman, isRoamer = pcall(function() return zombie:getVariableBoolean("RNPCHuman") end)
+    if okHuman and isRoamer then return true end
+    if md.RNPC ~= nil or md.RNPCIgnore then return true end
     if PZTheMutants
         and PZTheMutants.API
         and PZTheMutants.API.isMutant(zombie) then
@@ -98,6 +102,8 @@ local function buildSkinData()
     nightOnly               = ZSExpandedNight.nightOnly()
     alienVoices             = pick(vars.AlienVoices, true)
     nightDebug              = pick(vars.NightDebug, false)
+    local okSpeed, speed = pcall(function() return getSandboxOptions():getOptionByName("ZombieLore.Speed"):getValue() end)
+    worldSpeed = okSpeed and tonumber(speed) or nil
 
     nightState = ZSExpandedNight.state()
     if nightDebug and nightState.night then
@@ -469,6 +475,24 @@ local function applyHealth(zombie, md, data)
         tostring(health), tostring(zombie:getHealth())))
 end
 
+local function normalizeWalk(zombie, md, data)
+    if data and data.isRunner then return end
+    local flagged = md.IZSkins_sprint == true
+    local odd = flagged
+    if not odd and worldSpeed ~= nil and worldSpeed ~= 1 and not isPhunSprinters2Active() and md.PhunSprinters == nil then
+        local ok, walk = pcall(function() return zombie:getVariableString("zombieWalkType") end)
+        odd = ok and type(walk) == "string" and string.find(walk, "^sprint") ~= nil
+    end
+    if not odd then return end
+    md.IZSkins_sprint = nil
+    pcall(function()
+        zombie:makeInactive(true)
+        zombie:makeInactive(false)
+    end)
+    debugLog(string.format("%s was sprinting without being one of our runners: speed re-rolled from the world setting",
+        tostring(zombie:getOutfitName())))
+end
+
 local function onZombieUpdate(zombie)
     if not zombie or zombie:isDead() then return end
 
@@ -485,11 +509,18 @@ local function onZombieUpdate(zombie)
     if firstSight then
         removeLightItems(zombie)
         md.IZSkins_stripped = true
+        md.IZSkins_seen = 0
+        md.IZSkins_rollDone = nil
     end
 
     local outfit = zombie:getOutfitName()
     if not outfit then return end
     local data = skinData[outfit]
+
+    local walkCount = (md.IZSkins_w or 0) + 1
+    if walkCount >= 200 then walkCount = 0 end
+    md.IZSkins_w = walkCount
+    if walkCount <= 1 then normalizeWalk(zombie, md, data) end
 
     local isExploderNow = (data and data.isExploder) or false
     if isExploderNow and not md.IZSkins_isExploder then
@@ -498,22 +529,24 @@ local function onZombieUpdate(zombie)
         md.IZSkins_isExploder = nil
     end
 
-    if firstSight and not data and isSingleplayer() and #naturalSpawn > 0
-        and (not precipitationOnly or isPrecipitating())
-        and (not nightOnly or isNight()) then
-
-        local night = isNight()
-        local roll = ZombRand(10000) / 100
-        local cumulative = 0
-        for _, s in ipairs(naturalSpawn) do
-            if night or not s.nightOnly then
-                cumulative = cumulative + s.chance * nightState.spawnMult
-                if roll < cumulative then
-                    pcall(function()
-                        zombie:dressInNamedOutfit(s.outfit)
-                        zombie:resetModelNextFrame()
-                    end)
-                    break
+    if md.IZSkins_seen ~= nil and not md.IZSkins_rollDone and not data and isSingleplayer() and #naturalSpawn > 0 then
+        md.IZSkins_seen = md.IZSkins_seen + 1
+        if md.IZSkins_seen < 60 then return end
+        md.IZSkins_rollDone = true
+        if (not precipitationOnly or isPrecipitating()) and (not nightOnly or isNight()) then
+            local night = isNight()
+            local roll = ZombRand(10000) / 100
+            local cumulative = 0
+            for _, s in ipairs(naturalSpawn) do
+                if night or not s.nightOnly then
+                    cumulative = cumulative + s.chance * nightState.spawnMult
+                    if roll < cumulative then
+                        pcall(function()
+                            zombie:dressInNamedOutfit(s.outfit)
+                            zombie:resetModelNextFrame()
+                        end)
+                        break
+                    end
                 end
             end
         end
@@ -554,6 +587,7 @@ local function onZombieUpdate(zombie)
     if md.IZSkins_ticks >= updateInterval then
         if data.isRunner then
             zombie:setWalkType("sprint4")
+            md.IZSkins_sprint = true
             markSprinterForPhunSprinters(zombie, md)
         end
         md.IZSkins_ticks = 0

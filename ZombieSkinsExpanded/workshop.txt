@@ -16,12 +16,14 @@ description=[*][b]Optional rain/snow/fog-only spawning.[/b] New sandbox toggle, 
 description=[*][b]Optional night-only spawning.[/b] One toggle for every skin, plus one per skin, limited to 12am-6am game time. It combines with the rain/snow/fog option instead of replacing it: turn on both if you want!
 
 description=[*][b]Configurable night window and spawn scaling.[/b] Pick the night hours (e.g. 10pm-5am, wrapping past midnight is fine). Optionally, a spawn multiplier scales how many of these zombies appear during the window, re-rolled every night between a min and max you set, with a chance of calm nights. All on the new Night sandbox page, off by default.
-description=[*][b]Health stays put.[/b] Health is now set once per zombie instead of being reset every few seconds, so damage no longer heals back. The per-skin health maximum stays at 30: testing showed the game kills zombies a few seconds after spawning when their health is set to 45 or more.
+description=[*][b]Damage sticks, including fire and explosions.[/b] Health is now set once per zombie instead of being reset every few seconds, so damage no longer heals back. This is why fire and explosions barely hurt these zombies before. The per-skin health maximum stays at 30: testing showed the game kills zombies a few seconds after spawning when their health is set to 45 or more.
 description=[*][b]Full Moon: Double Spawn Rate.[/b] Optional: during the night window, skins spawn at double the rate on nights with a full moon.
 description=[*][b]Exploder blast radius fixed.[/b] It wasn't actually circular — zombies in the corners of the blast zone were taking damage from farther away than the radius said they should.
 
 description=[*][b]Two ultra-rare alien skins.[/b] A Grey Alien and Skinny Bob: sprinters and climbers that scream in their own alien voices, drawing zombies toward them. They are roughly 50x rarer than any other skin by default, and by default they only appear between 12am and 6am game time. Every setting, including that one, is adjustable in the sandbox under the Aliens page. Models, textures and voice clips are from [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3759103750]Alien Events[/url] by [url=https://steamcommunity.com/profiles/76561198109648219]TheS1X[/url] (see Credits).
 
+description=[*][b]Roaming Survivors compatibility.[/b] Its NPCs are left alone, so they no longer end up wearing a special zombie skin. Single-player skin rolls now wait a moment, so an NPC body is marked by its own mod before this one decides anything.
+description=[*][b]Sprinter clean-up.[/b] A regular zombie that picks up sprinting from a skin that ran before it (zombie bodies get reused) is returned to its normal speed.
 description=[*][b]PhunSprinters 2 compatibility.[/b] If you run a setup w. PhunSprinters2 that controls when vanilla zombies sprint by time of day, these skins won't cause issues.
 
 description=[*][b]Compatibility with Bandits2[/b] 
