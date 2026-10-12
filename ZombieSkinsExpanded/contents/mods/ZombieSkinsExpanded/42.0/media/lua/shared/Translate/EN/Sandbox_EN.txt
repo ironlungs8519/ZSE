@@ -498,15 +498,12 @@ Sandbox_EN = {
 
 	Sandbox_ZSExpandedNight = "Zombie Skins: Expanded - Night",
 
-	Sandbox_Nightmare = "Nightmare Mode",
-	Sandbox_Nightmare_tooltip = "One switch for a night that is dangerous in two ways. Turns on both Spawn Only At Night (these zombies only appear while the night window is open) and Night Spawn Scaling (while the window is open, more or fewer of them appear, by an amount rolled fresh every night between the min and max below). Uses the window hours and calm night chance set on this page, and works together with the fog, rain and per-skin options. The two options can still be switched on separately; Nightmare Mode just turns both on at once. Off by default.",
-
 	Sandbox_NightStartHour = "Night Starts (hour)",
 	Sandbox_NightStartHour_tooltip = "Game hour the night window opens, 0-23 (22 = 10pm). Used by every night option in this mod, including the Night Only spawn toggles. If the start is later than the end the window runs through midnight (22 to 5 = 10pm to 5am). Default 0.",
 	Sandbox_NightEndHour = "Night Ends (hour)",
 	Sandbox_NightEndHour_tooltip = "Game hour the night window closes, 1-24. The window is open up to, but not including, this hour (6 = until 6:00 am). Start equal to end means the whole day counts as night. Default 6.",
 	Sandbox_NightQuietChance = "Calm Night Chance (%%)",
-	Sandbox_NightQuietChance_tooltip = "Each night is rolled once. This is the chance that a night is calm: skins spawn at the low end of the Night Spawn Scaling range. Applies only if Night Spawn Scaling or Nightmare Mode is on. Default 15.",
+	Sandbox_NightQuietChance_tooltip = "Each night is rolled once. This is the chance that a night is calm: skins spawn at the low end of the Night Spawn Scaling range. Applies only if Night Spawn Scaling is on. Default 15.",
 
 	Sandbox_NightSpawnScale = "Night Spawn Scaling",
 	Sandbox_NightSpawnScale_tooltip = "If true, skin spawn chances are multiplied during the night window by an amount rolled every night between the min and max below. Outside the window spawn chances are unchanged. The per-skin chances stay the base values.",
@@ -516,7 +513,7 @@ Sandbox_EN = {
 	Sandbox_NightSpawnMax_tooltip = "Spawn chance multiplier on the worst nights. 300 triples the chances. Default 300.",
 
 	Sandbox_FullMoonDoubleSpawn = "Full Moon: Double Spawn Rate",
-	Sandbox_FullMoonDoubleSpawn_tooltip = "If true, skins spawn at double the rate on nights with a full moon, during the night window. It multiplies whatever Night Spawn Scaling or Nightmare Mode would give that night, and also works on its own (then the rate is normal on other nights and doubled on a full moon). Has no effect outside the night window. Off by default.",
+	Sandbox_FullMoonDoubleSpawn_tooltip = "If true, skins spawn at double the rate on nights with a full moon, during the night window. It multiplies whatever Night Spawn Scaling gives that night, and also works on its own (then the rate is normal on other nights and doubled on a full moon). Has no effect outside the night window. Off by default.",
 	Sandbox_NightDebug = "Debug Log",
 	Sandbox_NightDebug_tooltip = "Print debug information to the console log: the numbers rolled for each night (intensity and spawn multiplier) and the moon phase (4 = full), plus the health this mod sets on its zombies, what the game reports back, and each of its zombies dying. Turn on only when diagnosing a problem.",
 

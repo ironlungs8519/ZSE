@@ -30,16 +30,12 @@ function N.window()
     return s, e
 end
 
-function N.nightmare()
-    return opt("Nightmare", false) == true
-end
-
 function N.nightOnly()
-    return opt("NightOnly", false) == true or N.nightmare()
+    return opt("NightOnly", false) == true
 end
 
 function N.spawnScaleOn()
-    return opt("NightSpawnScale", false) == true or N.nightmare()
+    return opt("NightSpawnScale", false) == true
 end
 
 function N.isNight(hour)
