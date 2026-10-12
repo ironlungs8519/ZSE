@@ -1,4 +1,3 @@
--- The alien skins have a bald head: no hair, beard or stubble. Does nothing if this table differs in some build.
 require "Definitions/HairOutfitDefinitions"
 
 local defs = HairOutfitDefinitions and HairOutfitDefinitions.haircutOutfitDefinition

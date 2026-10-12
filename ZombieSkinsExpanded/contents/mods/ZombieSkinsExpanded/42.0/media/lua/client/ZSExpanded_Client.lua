@@ -1,19 +1,7 @@
--- Zombie Skins: Expanded - logica de comportamiento (lado CLIENTE).
---
--- En Project Zomboid multiplayer (y en servidores dedicados) los zombies cercanos a un
--- jugador se SIMULAN EN EL CLIENTE, no en el servidor. Por eso los eventos OnZombieUpdate/
--- OnZombieDead solo se disparan de forma fiable en el cliente, y el dano al jugador solo
--- surte efecto si se aplica en el cliente de ESE jugador (la vida del jugador es
--- autoritativa en su cliente). Toda la logica por-zombie vive aqui: se ejecuta en cada
--- cliente en MP, y tambien en singleplayer porque el codigo de cliente corre en la partida
--- local. El servidor (ZSExpanded_Behaviour.lua) solo actua de relay para los efectos que
--- deben alcanzar a TODOS los clientes (sonido y dano de la explosion sobre otros jugadores)
--- y para el dano autoritativo a otros zombies.
-
 require 'ZSExpanded/ZSExpanded_Night'
 
 local skinData = {}
--- Skins habilitadas con su chance, para la auto-asignacion natural en singleplayer.
+
 local naturalSpawn = {}
 local updateInterval = 200
 local toxicRadius, toxicDamage, toxicCooldown = 5, 0.5, 120
@@ -22,42 +10,29 @@ local screamerVolume = 50
 local exploderRadius, exploderDamagePlayers, exploderDamageZombies = 5, 3, 0.2
 local exploderEmitFire, exploderFireEnergy, exploderFireDuration = false, 5.0, 300
 
--- Global: cuando es true, ninguna skin de este mod puede aparecer (ni por distribucion
--- vanilla en MP, ni por auto-asignacion aqui en SP) salvo que este lloviendo o nevando.
 local precipitationOnly = false
--- Global night-only option (12am-6am game time); independent of precipitationOnly.
+
 local nightOnly = false
--- Alien Voices option: when true, the aliens scream with their own clips.
+
 local alienVoices = true
 
--- Singleplayer = ni cliente ni servidor de red. En ese caso el cliente resuelve todo
--- localmente (sonido + dano a jugador + dano a zombies + fuego) sin pasar por el servidor.
 local function isSingleplayer()
     return not isClient() and not isServer()
 end
 
--- pick(): devuelve el valor del sandbox si esta definido, o el default. El idiom
--- "v ~= nil and v or default" es incorrecto para booleanos (false devuelve el default).
 local function pick(v, default)
     if v == nil then return default end
     return v
 end
 
--- Night window and per-night intensity live in ZSExpanded_Night.lua (shared with the server's spawn table).
 local isNight = ZSExpandedNight.isNight
 
--- Tonight's numbers (spawn multiplier). Refreshed once a minute in buildSkinData: they only change with the clock
--- or the sandbox, and onZombieUpdate runs far too often to recompute them.
 local nightState = { night = false, quiet = false, intensity = 0, spawnMult = 1 }
 local lastNightLogged = nil
 local nightDebug = false
--- Toughness Multiplier: the game's health tops out around 30 for these zombies, so extra toughness is done by giving
--- back part of the damage each zombie takes. 1 = off.
+
 local toughness = 1
 
--- Comprueba si esta lloviendo, nevando, o con niebla ahora mismo (para PrecipitationOnly
--- en SP; el equivalente en MP vive en ZSExpanded_ZoneDefinitions.lua). La niebla no tiene
--- isFoggy() propio; tratamos getFogIntensity() > 0 como niebla.
 local function isPrecipitating()
     local ok, climate = pcall(getClimateManager)
     if not ok or not climate then return false end
@@ -67,14 +42,7 @@ local function isPrecipitating()
     return (rainOk and raining) or (snowOk and snowing) or (fogOk and fog and fog > 0)
 end
 
--- PhunSprinters 2 (Workshop 3609311749) vuelve a evaluar el estado de sprint/caminata de
--- cada zombie cercano en su propio ciclo dia/noche, sin excepcion para skins personalizadas
--- - sin esto, le quitaria el sprint a nuestros zombies "runner" durante el dia. Su propio
--- codigo salta cualquier zombie cuyo modData tenga un campo "brain" verdadero ("Skip special
--- zeds like bandits" - PhunSprinters/client_main.lua), asi que se lo ponemos a nuestros
--- runners para que los ignore por completo. No tocamos nada mas de PhunSprinters, y esto es
--- un no-op total si ese mod no esta instalado.
-local phunSprintersActive = nil -- nil = aun sin comprobar
+local phunSprintersActive = nil
 local function isPhunSprinters2Active()
     if phunSprintersActive == nil then
         local ok, mods = pcall(getActivatedMods)
@@ -89,21 +57,6 @@ local function markSprinterForPhunSprinters(zombie, md)
     md.brain = "ZSExpanded"
 end
 
--- Bandits2 ("[B42] Bandits NPC", Workshop mod id "Bandits2") anade NPCs humanos
--- hostiles, marcados con una variable de personaje: zombie:getVariableBoolean("Bandit").
--- Tambien mantenemos el chequeo de modData "brain" como catch-all secundario, segun
--- la convencion que documenta el propio PhunSprinters para "special zeds" en general.
--- Cualquiera de las dos senales basta para tratar el objeto como que no es una de
--- nuestras skins y saltarlo por completo, ademas de nuestro chequeo por outfit ya
--- existente. No-op total si ni Bandits2 ni nada mas pone estos valores.
---
--- PZTheMutants ("The Mutants") expone una pequena API publica de solo lectura
--- pensada exactamente para esto: PZTheMutants.API.isMutant(zombie) devuelve true
--- una vez que un zombie tiene una identidad Husk/Leaper/Puker/Skitter/Weeper/Wrecker
--- ya establecida. Tambien la respetamos aqui, para no volver a vestir un zombie que
--- The Mutants ya reclamo. No-op si ese mod no esta instalado.
--- Project A-Life NPCs are zombie bodies stamped with ProjectALifeOwned/ProjectALifeActor (or the ALife/
--- ALifeActor variables). Kept apart from the md.brain check: we tag our own runners with md.brain.
 local function isALifeActor(zombie, md)
     if ProjectALife == nil then return false end
     if md and (md.ProjectALifeOwned == true or md.ProjectALifeActor == true) then return true end
@@ -117,7 +70,7 @@ local function isMarkedSpecialZed(zombie, md)
     local ok, isBandit = pcall(function() return zombie:getVariableBoolean("Bandit") end)
     if ok and isBandit then return true end
     if isALifeActor(zombie, md) then return true end
-    -- md.brain marks another mod's special zed; our own PhunSprinters tag must not count.
+
     if md.brain ~= nil and md.brain ~= "ZSExpanded" then return true end
     if PZTheMutants
         and PZTheMutants.API
@@ -169,9 +122,7 @@ local function buildSkinData()
             isToxic       = pick(vars[toxicKey], defaultToxic or false),
             isScreamer    = pick(vars[screamerKey], defaultScreamer or false),
             isExploder    = pick(vars[exploderKey], defaultExploder or false),
-            -- Si es true, un empujon (shove) de un jugador pierde su flag de "critico" antes
-            -- de que el juego resuelva el golpe, asi que un empujon ya no puede tirar a esta
-            -- skin al suelo. Un critico de arma no se toca, asi que un arma si puede tumbarla.
+
             noKnockdown   = pick(vars[noKnockdownKey], defaultNoKnockdown or false),
         }
     end
@@ -202,8 +153,6 @@ local function buildSkinData()
         ["AASkinnyBob01_Costume"] = d("SkinnyBob01Health", "SkinnyBob01IsRunner", "SkinnyBob01IsClimber", "SkinnyBob01IsWallBreaker", "SkinnyBob01IsToxic", "SkinnyBob01IsScreamer", "SkinnyBob01IsExploder", 5, false, false, true, false, "SkinnyBob01NoKnockdown", true),
     }
 
-    -- Reconstruye la lista de auto-asignacion (SP): cada skin habilitada con SpawnChance > 0.
-    -- El outfit "AAXxx_Costume" mapea a las claves de sandbox "XxxEnable"/"XxxSpawnChance".
     naturalSpawn = {}
     for outfitName in pairs(skinData) do
         local base = tostring(outfitName):gsub("^AA", "")
@@ -216,11 +165,6 @@ local function buildSkinData()
     end
 end
 
---------------------------------------------------------------------------------
--- Helpers de dano/sonido (lado cliente, solo jugadores locales)
---------------------------------------------------------------------------------
-
--- El cliente solo puede danar de forma fiable a SU jugador (o jugadores en splitscreen).
 local function forEachLocalPlayer(callback)
     for i = 0, 3 do
         local p = getSpecificPlayer(i)
@@ -228,11 +172,6 @@ local function forEachLocalPlayer(callback)
     end
 end
 
--- Dana la vida del jugador. AddDamage() reduce la vida de cada parte del cuerpo, pero en
--- multiplayer el cambio NO se propaga solo: hay que llamar a syncBodyPart() despues (patron
--- que usa el propio juego). Sin ese sync el servidor sobreescribia la vida en el siguiente
--- update y no pasaba NADA en MP (en SP no hace falta sincronizar, por eso alli si dañaba).
--- 0xFFFFFFFFFFF = sincronizar todos los campos de la parte (igual que hace ClientCommands).
 local function damagePlayer(player, dmg)
     local bd = player:getBodyDamage()
     if not bd then return end
@@ -253,18 +192,16 @@ local function playExplosionSoundAt(x, y, z)
     end
 end
 
--- Voice clip sets; the sounds are defined as <prefix>01..NN in ZombieSkins_scripts.txt.
 local SCREAM_VOICES = {
     grey   = { prefix = "ZSE_GreyVoice",   count = 12 },
     skinny = { prefix = "ZSE_SkinnyVoice", count = 12 },
 }
--- Voice per skin, taken from the current outfit at scream time (nothing is stored on the zombie).
+
 local VOICE_BY_OUTFIT = {
     ["AAGrey01_Costume"]       = "grey",
     ["AASkinnyBob01_Costume"]  = "skinny",
 }
 
--- Unknown voice values (e.g. from the network) fall back to the standard scream.
 local function screamSoundName(voice)
     local set = type(voice) == "string" and SCREAM_VOICES[voice] or nil
     if set then
@@ -281,8 +218,6 @@ local function playScreamSoundAt(x, y, z, voice)
     end
 end
 
--- Runs `func` after `seconds` of real time. OnTick es por-frame, asi que contar ticks es
--- poco fiable a FPS alto/descapado; usamos tiempo real de reloj.
 local function delaySeconds(func, seconds)
     local target = getTimestampMs() + seconds * 1000
     local function onTick()
@@ -293,9 +228,6 @@ local function delaySeconds(func, seconds)
     Events.OnTick.Add(onTick)
 end
 
--- Aplica el dano de la explosion a los jugadores LOCALES dentro del radio (misma planta).
--- La comparacion de altura usa tolerancia: al llegar por red, cz puede ser un flotante que
--- no coincide EXACTAMENTE con player:getZ(), asi que comparamos la planta redondeada.
 local function explodePlayerDamage(cx, cy, cz)
     forEachLocalPlayer(function(player)
         if math.floor(player:getZ() + 0.5) == math.floor(cz + 0.5) then
@@ -307,12 +239,6 @@ local function explodePlayerDamage(cx, cy, cz)
     end)
 end
 
--- Dano a otros zombies + fuego. Solo se usa en SINGLEPLAYER (en MP lo hace el servidor,
--- que es autoritativo sobre el resto de zombies).
--- includeFire: true en SP (no hay servidor que sea autoritativo sobre el fuego, asi que
--- el cliente lo resuelve todo). En MP se pasa false: el fuego es estado del mundo y ahora
--- lo inicia el servidor de forma autoritativa (ver ZSExpanded_Behaviour.lua), igual que ya
--- se hacia con el dano a jugadores - iniciarlo solo en el cliente no persistia en MP.
 local function explodeWorldDamage(cx, cy, cz, includeFire)
     local r = exploderRadius
     for x = cx - r, cx + r do
@@ -324,7 +250,7 @@ local function explodeWorldDamage(cx, cy, cz, includeFire)
                     local mObjs = osq:getMovingObjects()
                     for k = mObjs:size() - 1, 0, -1 do
                         local o = mObjs:get(k)
-                        -- Skip A-Life NPCs: they manage their own health and death.
+
                         if o and instanceof(o, "IsoZombie") and not o:isDead()
                             and not isALifeActor(o, o:getModData()) then
                             o:setHealth(o:getHealth() - exploderDamageZombies)
@@ -335,7 +261,7 @@ local function explodeWorldDamage(cx, cy, cz, includeFire)
                                     o:setAttackedBy(attacker)
                                     o:becomeCorpse()
                                 else
-                                    -- becomeCorpse is missing on zombies in some builds; Kill() is the fallback.
+
                                     local ok, err = pcall(function() o:Kill(attacker) end)
                                     if not ok then print("[ZSExpanded] blast could not kill zombie: " .. tostring(err)) end
                                 end
@@ -355,10 +281,6 @@ local function explodeWorldDamage(cx, cy, cz, includeFire)
         end
     end
 end
-
---------------------------------------------------------------------------------
--- Habilidades activas (trepar, romper muros, toxico, gritar)
---------------------------------------------------------------------------------
 
 local function triggerClimb(zombie)
     zombie:setVariable("hitreaction", "ZombieClimbWallReactionStart")
@@ -404,9 +326,6 @@ local function climbWallFunction(zombie)
     end
 end
 
--- Construcciones de jugador (vallas, cajas, muros, barricadas) y obstaculos abribles
--- (ventanas/puertas y sus barricadas) que el rompemuros destruye. Los muros solidos
--- vanilla son IsoObject, no IsoThumpable, asi que se dejan intactos.
 local function isBreakable(o)
     return o and (instanceof(o, "IsoThumpable") or instanceof(o, "IsoBarricade")
         or instanceof(o, "IsoWindow") or instanceof(o, "IsoDoor"))
@@ -446,9 +365,6 @@ local function wallBreakFunction(zombie)
     clearConstructionsOnSquare(ahead)
 end
 
--- En Build 42 item:hasTag() ya NO acepta un String (espera un objeto ItemTag), y
--- "HazmatSuit" es un tipo de item, no un tag. Detectamos el traje por el nombre del tipo,
--- que cubre HazmatSuit y variantes con "hazmat" en el nombre.
 local function isWearingHazmat(player)
     local worn = player:getWornItems()
     for i = 0, worn:size() - 1 do
@@ -460,7 +376,6 @@ local function isWearingHazmat(player)
     return false
 end
 
--- Dana a los jugadores LOCALES cercanos al zombie toxico (el traje Hazmat protege).
 local function toxicFunction(zombie)
     local md = zombie:getModData()
     md.IZSkins_toxicTicks = (md.IZSkins_toxicTicks or 0) + 1
@@ -472,16 +387,13 @@ local function toxicFunction(zombie)
             if isSingleplayer() then
                 damagePlayer(player, toxicDamage)
             else
-                -- En MP el dano al jugador es AUTORITATIVO del servidor: si lo aplica el
-                -- cliente, el servidor lo sobreescribe. Le pedimos que dane a este jugador.
+
                 sendClientCommand(player, "ZSExpanded", "ToxicDamage", { dmg = toxicDamage })
             end
         end
     end)
 end
 
--- El gritador atrae zombies (addSound) y reproduce el grito. En MP el servidor lo
--- reemite a todos los clientes; en SP se resuelve localmente.
 local function screamerFunction(zombie)
     local md = zombie:getModData()
     md.IZSkins_screamerTicks = (md.IZSkins_screamerTicks or 0) + 1
@@ -494,29 +406,21 @@ local function screamerFunction(zombie)
         addSound(zombie, x, y, z, screamerRadius, screamerVolume)
         playScreamSoundAt(x, y, z, voice)
     else
-        -- the server relays this table untouched, so `voice` reaches every client
+
         sendClientCommand(getPlayer(), "ZSExpanded", "Scream", { x = x, y = y, z = z, voice = voice })
     end
 end
 
---------------------------------------------------------------------------------
--- Explosion del exploder
---------------------------------------------------------------------------------
-
 local function triggerExplosion(cx, cy, cz)
     if isSingleplayer() then
-        -- SP: el cliente resuelve todo. Sonido ya; dano 2s despues para cuadrar con el sonido.
+
         playExplosionSoundAt(cx, cy, cz)
         delaySeconds(function()
             explodePlayerDamage(cx, cy, cz)
             explodeWorldDamage(cx, cy, cz, true)
         end, 2)
     else
-        -- MP: el servidor reemite el sonido, aplica (autoritativo) el dano a los jugadores
-        -- en radio, e inicia el fuego (autoritativo) - el fuego es estado del mundo, asi que
-        -- lo hace el servidor y no cada cliente por separado. Le enviamos radio, dano, y la
-        -- config de fuego; el dano a zombies lo hace cada cliente al recibir el broadcast
-        -- (los zombies se simulan en el cliente).
+
         sendClientCommand(getPlayer(), "ZSExpanded", "Explode", {
             x = cx, y = cy, z = cz,
             radius = exploderRadius, dmg = exploderDamagePlayers,
@@ -525,11 +429,6 @@ local function triggerExplosion(cx, cy, cz)
     end
 end
 
---------------------------------------------------------------------------------
--- Eventos
---------------------------------------------------------------------------------
-
--- Clear the random bandages the game adds to zombies wearing one of our skins.
 local function clearBodyVisuals(zombie)
     local ok, hadAny = pcall(function()
         local visuals = zombie:getHumanVisual():getBodyVisuals()
@@ -555,16 +454,10 @@ local function removeLightItems(zombie)
     end
 end
 
--- Gives the zombie its health pool once, not on every interval: resetting it every few seconds healed the
--- zombie back to full, so only burst damage ever counted. The key ties the pool to this zombie, its skin and
--- the sandbox value, so a recycled body (new id) or a changed setting gets a fresh pool.
 local function debugLog(msg)
     if nightDebug then print("[ZSExpanded] " .. msg) end
 end
 
--- Testing showed the game kills zombies a few seconds after spawning when their health is set to 45 or more (30 was
--- fine), all of a batch in the same frame. A world saved while the cap was higher can still hold a bigger value, so
--- it is clamped here too.
 local MAX_SAFE_HEALTH = 30
 
 local function applyHealth(zombie, md, data)
@@ -574,18 +467,15 @@ local function applyHealth(zombie, md, data)
     if md.IZSkins_hpKey == key then return end
     md.IZSkins_hpKey = key
     zombie:setHealth(health)
-    -- If the engine clamps or rewrites the value, "reads" will differ from "wanted".
+
     debugLog(string.format("health set on %s: wanted %s, engine reads %s", tostring(zombie:getOutfitName()),
         tostring(health), tostring(zombie:getHealth())))
 end
 
--- With Toughness Multiplier above 1, whenever a zombie's health has dropped since the last update, give back the share
--- of that loss the multiplier cancels: a loss of d becomes d / toughness. Health that went up is just accepted (that is
--- how the starting pool arrives). A zombie already at 0 or below stays dead. Fire, blasts and falls count too.
 local function applyToughness(zombie, md)
     local health = zombie:getHealth()
     local last = md.ZSE_lastHealth
-    -- 0.001 keeps float rounding in the stored value from counting as damage
+
     if last and last - health > 0.001 and health > 0 then
         local kept = last - (last - health) / toughness
         zombie:setHealth(kept)
@@ -594,7 +484,7 @@ local function applyToughness(zombie, md)
             debugLog(string.format("%s took %.2f damage, toughness x%.1f kept it at %.2f", tostring(zombie:getOutfitName()),
                 last - health, toughness, kept))
         end
-        health = zombie:getHealth() -- read back: the game stores a rounded number
+        health = zombie:getHealth()
     end
     md.ZSE_lastHealth = health
 end
@@ -604,7 +494,6 @@ local function onZombieUpdate(zombie)
 
     local md = zombie:getModData()
 
-    -- Skip A-Life NPCs; clear any exploder flag a recycled body may still carry.
     if isALifeActor(zombie, md) then
         if md.IZSkins_isExploder then md.IZSkins_isExploder = nil end
         return
@@ -612,9 +501,6 @@ local function onZombieUpdate(zombie)
 
     if isMarkedSpecialZed(zombie, md) then return end
 
-    -- firstSight = primera vez que este mod procesa a este zombie. Un zombie con skin en su
-    -- primera vista = spawn natural del juego. Un zombie que ya vimos como normal y luego
-    -- aparece con skin = conversion manual (admin) -> no lo tocamos.
     local firstSight = not md.IZSkins_stripped
     if firstSight then
         removeLightItems(zombie)
@@ -625,11 +511,6 @@ local function onZombieUpdate(zombie)
     if not outfit then return end
     local data = skinData[outfit]
 
-    -- Revalidar el flag de exploder contra la skin ACTUAL en cada update. PZ recicla los
-    -- objetos de zombie y su modData puede persistir, asi que un zombie normal (o uno cuyo
-    -- exploder se desactivo por sandbox) podria arrastrar el flag de una vida anterior y
-    -- explotar al morir. Aqui el zombie esta vivo y su outfit es valido, asi que nos fiamos
-    -- de el; escribimos solo si cambia (flag local del cliente, sin coste de red).
     local isExploderNow = (data and data.isExploder) or false
     if isExploderNow and not md.IZSkins_isExploder then
         md.IZSkins_isExploder = true
@@ -637,16 +518,10 @@ local function onZombieUpdate(zombie)
         md.IZSkins_isExploder = nil
     end
 
-    -- SINGLEPLAYER: auto-asignacion de skins. En SP la distribucion vanilla no se usa (ver
-    -- ZSExpanded_ZoneDefinitions.lua), asi que aqui, en la PRIMERA vista de un zombie
-    -- GENERICO (sin skin), tiramos el dado del sandbox EN VIVO y quiza lo vestimos con una
-    -- skin habilitada. Un zombie que YA trae skin en primera vista lo puso el admin (Horde
-    -- Manager) -> no se toca. En MP no se hace: alli la distribucion server-side ya asigna.
-    -- PrecipitationOnly (SP): si esta activo, tiramos el dado solo mientras llueve o nieva.
     if firstSight and not data and isSingleplayer() and #naturalSpawn > 0
         and (not precipitationOnly or isPrecipitating())
         and (not nightOnly or isNight()) then
-        -- Night-only skins have no window in the roll by day; the others keep their own chance.
+
         local night = isNight()
         local roll = ZombRand(10000) / 100
         local cumulative = 0
@@ -689,11 +564,10 @@ local function onZombieUpdate(zombie)
 
     md.IZSkins_ticks = (md.IZSkins_ticks or 0) + 1
 
-    -- First update, then every updateInterval (recycled zombies can get bandages back).
     if md.IZSkins_ticks == 1 or md.IZSkins_ticks >= updateInterval then
         clearBodyVisuals(zombie)
         applyHealth(zombie, md, data)
-        -- Debug only: follow the first few health readings of each zombie, to see when and how it drops.
+
         if nightDebug and (md.IZSkins_dbgN or 0) < 6 then
             md.IZSkins_dbgN = (md.IZSkins_dbgN or 0) + 1
             debugLog(string.format("%s health now %s (update %d)", tostring(outfit), tostring(zombie:getHealth()),
@@ -727,16 +601,6 @@ local function onHitZombie(zombie, wielder, bodyPart, weapon)
         end
     end
 
-    -- 밀치기(isDoShove)로 한정하는 이유: setCriticalHit(false)는 데미지 계산
-    -- (DamageModelDefinitions.lua가 wielder:isCriticalHit()를 읽는다)에도
-    -- 영향을 준다. 밀치기는 데미지가 0이라 손실이 없지만, 무기 공격까지 끄면
-    -- 크리티컬 데미지가 통째로 사라진다. 무기 크리티컬 넉다운은 "강한 피격"이라
-    -- 남겨두는 게 맞기도 하다.
-    --
-    -- instanceof(wielder, "IsoPlayer") es necesario: mods como Bandits pueden hacer que
-    -- un NPC ataque a un zombie con su propia clase, y esa clase no tiene isDoShove().
-    -- Sin este chequeo, un bandido disparando o golpeando a uno de nuestros zombies
-    -- lanzaba "Object tried to call nil in onHitZombie".
     if data.noKnockdown and wielder and instanceof(wielder, "IsoPlayer") and wielder:isDoShove() then
         wielder:setCriticalHit(false)
     end
@@ -747,14 +611,13 @@ local function onZombieDead(zombie)
     local md = zombie:getModData()
     if nightDebug and md.IZSkins_hpKey then
         local okFire, fire = pcall(function() return zombie:isOnFire() end)
-        -- lastTracked is the health this mod last saw while the zombie was alive: if it is far above 0, the killing
-        -- blow did more damage than that in one go (or the zombie was on the floor and finished off).
+
         local okFloor, floor = pcall(function() return zombie:isOnFloor() end)
         debugLog(string.format("%s died: health %s, last tracked %s, on floor %s, on fire %s",
             tostring(zombie:getOutfitName()), tostring(zombie:getHealth()), tostring(md.ZSE_lastHealth),
             tostring(okFloor and floor), tostring(okFire and fire)))
     end
-    -- Never explode an A-Life NPC.
+
     if isALifeActor(zombie, md) then return end
     if not md.IZSkins_isExploder then return end
     local sq = zombie:getSquare()
@@ -762,15 +625,13 @@ local function onZombieDead(zombie)
     triggerExplosion(sq:getX(), sq:getY(), sq:getZ())
 end
 
--- Comandos que reemite el servidor a todos los clientes (MP).
 local function onServerCommand(module, command, args)
     if module ~= "ZSExpanded" then return end
     if command == "Scream" then
         addSound(nil, args.x, args.y, args.z, screamerRadius, screamerVolume)
         playScreamSoundAt(args.x, args.y, args.z, args.voice)
     elseif command == "Explode" then
-        -- Sonido ya; 2s despues, dano a los zombies que ESTE cliente simula cerca del
-        -- estallido. El dano a los JUGADORES lo aplica el servidor (autoritativo).
+
         playExplosionSoundAt(args.x, args.y, args.z)
         delaySeconds(function()
             explodeWorldDamage(args.x, args.y, args.z, false)

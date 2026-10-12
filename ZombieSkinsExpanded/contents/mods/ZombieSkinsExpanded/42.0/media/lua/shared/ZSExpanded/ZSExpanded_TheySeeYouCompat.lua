@@ -1,10 +1,5 @@
--- They See You counts zombies as sprinters through SMBTheySEEYouCore.isSprinter. We wrap it so a ZSE skin with
--- Screamer on is not counted (it already screams with our own scream). Does nothing if They See You is absent
--- or renames this function.
-
 local WRAPPED = "__ZSExpandedWrapped"
 
--- outfit name -> sandbox key, e.g. "AAGrey01_Costume" -> "Grey01IsScreamer" (false = not one of ours)
 local keyCache = {}
 local function screamerKeyFor(outfit)
     local key = keyCache[outfit]
@@ -16,7 +11,6 @@ local function screamerKeyFor(outfit)
     return key
 end
 
--- Read at call time, so changing the setting mid-game takes effect immediately.
 local function isZSEScreamer(zombie)
     local vars = SandboxVars and SandboxVars.ZSExpanded
     if not vars or vars.TheySeeYouSkipScreamers == false then return false end
@@ -44,7 +38,6 @@ local function install()
     return true
 end
 
--- Load order between the mods is not guaranteed: try now, at boot and game start, then once a minute until installed.
 local function tryInstall()
     if not installed then installed = install() end
 end

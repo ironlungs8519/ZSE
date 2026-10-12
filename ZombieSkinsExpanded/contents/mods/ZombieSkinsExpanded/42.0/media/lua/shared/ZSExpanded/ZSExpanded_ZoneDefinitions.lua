@@ -31,24 +31,15 @@ local skinDefs = {
 
 local insertedEntries = {}
 
--- Devuelve v si esta definido, o el default. El idiom "v ~= nil and v or default" es
--- INCORRECTO para booleanos: cuando v es false devuelve el default, por lo que el toggle
--- "XEnable = false" del sandbox se ignoraba y el zombie especial spawneaba igual.
 local function pick(v, default)
     if v == nil then return default end
     return v
 end
 
--- Singleplayer = ni cliente ni servidor de red.
 local function isSingleplayer()
     return not isClient() and not isServer()
 end
 
--- Comprueba si esta lloviendo, nevando, o con niebla ahora mismo. Usado para
--- SandboxVars.ZSExpanded.PrecipitationOnly (MP/dedicado). El equivalente
--- en SP vive en ZSExpanded_Client.lua, junto a la auto-asignacion. La niebla
--- no tiene su propio isFoggy(); tratamos cualquier getFogIntensity() > 0 como
--- niebla, igual que hace el propio juego con isRaining()/isSnowing().
 local function isPrecipitating()
     local ok, climate = pcall(getClimateManager)
     if not ok or not climate then return false end
@@ -58,9 +49,6 @@ local function isPrecipitating()
     return (rainOk and raining) or (snowOk and snowing) or (fogOk and fog and fog > 0)
 end
 
--- Skins that may spawn right now, as { name, chance } with the base chance. This is every spawn condition in
--- one place: per-skin enable, rain/snow/fog, and the night-only toggles (all skins or one skin).
--- Used by the spawn table below and by the siren call-out in ZSExpanded_SirenCall.lua.
 function ZSExpandedEligibleSkins()
     local vars = SandboxVars and SandboxVars.ZSExpanded
     local list = {}
@@ -82,14 +70,9 @@ function ZSExpandedEligibleSkins()
 end
 
 local function rebuildZoneEntries()
-    -- En SINGLEPLAYER no usamos la distribucion vanilla: el sandbox del mundo se aplica
-    -- despues del arranque, asi que el juego "fotografia" la distribucion con los defaults
-    -- (todo activado) y no respeta la config. En SP las skins se asignan en el cliente
-    -- (ZSExpanded_Client.lua) tirando el dado en vivo. Aqui, en SP, dejamos la tabla sin
-    -- nuestras skins (y quitamos cualquiera que hubieramos metido).
+
     local sp = isSingleplayer()
 
-    -- Remove previously inserted entries
     for _, entry in ipairs(insertedEntries) do
         for i = #ZombiesZoneDefinition.Default, 1, -1 do
             if ZombiesZoneDefinition.Default[i] == entry then
@@ -103,7 +86,7 @@ local function rebuildZoneEntries()
     if sp then return end
 
     local nightState = ZSExpandedNight.state()
-    -- The window and the per-night spawn multiplier come from ZSExpanded_Night.lua.
+
     for _, skin in ipairs(ZSExpandedEligibleSkins()) do
         local entry = { name = skin.name, chance = skin.chance * nightState.spawnMult }
         table.insert(ZombiesZoneDefinition.Default, entry)
@@ -111,8 +94,6 @@ local function rebuildZoneEntries()
     end
 end
 
--- The engine only re-reads ZombiesZoneDefinition after some Lua file has been run, so when the table changes
--- (server only) we re-run an empty file. The first pass at boot needs no reload.
 local REFRESH_FILE = "media/lua/shared/ZSExpanded/ZSExpanded_noop.lua"
 local applied = nil
 
