@@ -599,6 +599,37 @@ local function applyToughness(zombie, md)
     md.ZSE_lastHealth = health
 end
 
+-- With Toughness Multiplier above 1 these zombies cannot be downed: a zombie on the floor is stood back up. Without
+-- this, one blow on a downed zombie kills it whatever its health is (see applyToughness). Critical hits are not
+-- touched, so their damage still applies; only the knockdown is undone afterwards. Tried once every 2.5 seconds, as
+-- the get-up animation takes a moment. Which way of standing up the game supports is not known, so each way is tried
+-- inside pcall and the result goes to the Debug Log.
+local function keepStanding(zombie, md)
+    local okFloor, onFloor = pcall(function() return zombie:isOnFloor() end)
+    if not (okFloor and onFloor) then return end
+    local now = getTimestampMs()
+    if md.ZSE_getUpAt and now < md.ZSE_getUpAt then return end
+    -- legless zombies crawl by design
+    local okCrawl, crawling = pcall(function() return zombie:isCrawling() end)
+    if okCrawl and crawling then return end
+    md.ZSE_getUpAt = now + 2500
+
+    local ok, how = pcall(function()
+        if ZombieGetUpState and ZombieGetUpState.instance then
+            zombie:changeState(ZombieGetUpState.instance())
+            return "get-up state"
+        end
+        zombie:setOnFloor(false)
+        return "setOnFloor"
+    end)
+    if nightDebug and (md.ZSE_upLog or 0) < 6 then
+        md.ZSE_upLog = (md.ZSE_upLog or 0) + 1
+        local _, still = pcall(function() return zombie:isOnFloor() end)
+        debugLog(string.format("%s was on the floor: tried to stand it up (%s, ok=%s), on floor now %s",
+            tostring(zombie:getOutfitName()), tostring(how), tostring(ok), tostring(still)))
+    end
+end
+
 local function onZombieUpdate(zombie)
     if not zombie or zombie:isDead() then return end
 
@@ -669,6 +700,7 @@ local function onZombieUpdate(zombie)
 
     if toughness > 1 then
         applyToughness(zombie, md)
+        keepStanding(zombie, md)
     end
 
     if data.isClimber then
