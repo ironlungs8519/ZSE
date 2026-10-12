@@ -31,8 +31,6 @@ local nightState = { night = false, quiet = false, intensity = 0, spawnMult = 1 
 local lastNightLogged = nil
 local nightDebug = false
 
-local toughness = 1
-
 local function isPrecipitating()
     local ok, climate = pcall(getClimateManager)
     if not ok or not climate then return false end
@@ -100,7 +98,6 @@ local function buildSkinData()
     nightOnly               = ZSExpandedNight.nightOnly()
     alienVoices             = pick(vars.AlienVoices, true)
     nightDebug              = pick(vars.NightDebug, false)
-    toughness               = math.min(5, math.max(1, pick(vars.ToughnessMultiplier, 1)))
 
     nightState = ZSExpandedNight.state()
     if nightDebug and nightState.night then
@@ -472,23 +469,6 @@ local function applyHealth(zombie, md, data)
         tostring(health), tostring(zombie:getHealth())))
 end
 
-local function applyToughness(zombie, md)
-    local health = zombie:getHealth()
-    local last = md.ZSE_lastHealth
-
-    if last and last - health > 0.001 and health > 0 then
-        local kept = last - (last - health) / toughness
-        zombie:setHealth(kept)
-        if nightDebug and (md.ZSE_toughLog or 0) < 8 then
-            md.ZSE_toughLog = (md.ZSE_toughLog or 0) + 1
-            debugLog(string.format("%s took %.2f damage, toughness x%.1f kept it at %.2f", tostring(zombie:getOutfitName()),
-                last - health, toughness, kept))
-        end
-        health = zombie:getHealth()
-    end
-    md.ZSE_lastHealth = health
-end
-
 local function onZombieUpdate(zombie)
     if not zombie or zombie:isDead() then return end
 
@@ -541,10 +521,6 @@ local function onZombieUpdate(zombie)
     end
 
     if not data then return end
-
-    if toughness > 1 then
-        applyToughness(zombie, md)
-    end
 
     if data.isClimber then
         climbWallFunction(zombie)
@@ -611,11 +587,8 @@ local function onZombieDead(zombie)
     local md = zombie:getModData()
     if nightDebug and md.IZSkins_hpKey then
         local okFire, fire = pcall(function() return zombie:isOnFire() end)
-
-        local okFloor, floor = pcall(function() return zombie:isOnFloor() end)
-        debugLog(string.format("%s died: health %s, last tracked %s, on floor %s, on fire %s",
-            tostring(zombie:getOutfitName()), tostring(zombie:getHealth()), tostring(md.ZSE_lastHealth),
-            tostring(okFloor and floor), tostring(okFire and fire)))
+        debugLog(string.format("%s died: health %s, on fire %s", tostring(zombie:getOutfitName()),
+            tostring(zombie:getHealth()), tostring(okFire and fire)))
     end
 
     if isALifeActor(zombie, md) then return end
