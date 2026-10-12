@@ -147,7 +147,7 @@ local function buildSkinData()
     nightOnly               = ZSExpandedNight.nightOnly()
     alienVoices             = pick(vars.AlienVoices, true)
     nightDebug              = pick(vars.NightDebug, false)
-    toughness               = math.max(1, pick(vars.ToughnessMultiplier, 1))
+    toughness               = math.min(5, math.max(1, pick(vars.ToughnessMultiplier, 1)))
 
     nightState = ZSExpandedNight.state()
     if nightDebug and nightState.night then
