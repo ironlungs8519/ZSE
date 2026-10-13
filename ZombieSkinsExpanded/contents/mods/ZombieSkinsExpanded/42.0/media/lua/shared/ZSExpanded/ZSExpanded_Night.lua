@@ -71,36 +71,23 @@ local function unit(seed)
     return mix(seed) / MOD
 end
 
-function N.moonPhase()
-    local ok, phase = pcall(function() return getClimateMoon():getCurrentMoonPhase() end)
-    if ok and type(phase) == "number" then return phase end
-    return nil
-end
-
-local FULL_MOON = 4
-
 function N.state()
     local st = { night = false, quiet = false, intensity = 0, spawnMult = 1 }
     if not N.isNight() then return st end
     st.night = true
 
-    local scaleOn = N.spawnScaleOn()
-    local fullMoonOn = opt("FullMoonDoubleSpawn", false) == true
-    if not scaleOn and not fullMoonOn then return st end
+    if not N.spawnScaleOn() then return st end
 
-    if scaleOn then
-        local idx = N.nightIndex()
-        local quietChance = clamp(opt("NightQuietChance", 15), 0, 100)
-        st.quiet = unit(idx * 3 + 1) * 100 < quietChance
-        st.intensity = st.quiet and 0 or unit(idx * 3 + 2)
+    local idx = N.nightIndex()
+    local quietChance = clamp(opt("NightQuietChance", 15), 0, 100)
+    st.quiet = unit(idx * 3 + 1) * 100 < quietChance
+    st.intensity = st.quiet and 0 or unit(idx * 3 + 2)
 
-        local lo, hi = opt("NightSpawnMin", 50), opt("NightSpawnMax", 300)
-        if lo > hi then lo, hi = hi, lo end
+    local lo, hi = opt("NightSpawnMin", 50), opt("NightSpawnMax", 300)
+    if lo > hi then lo, hi = hi, lo end
 
-        st.spawnMult = math.max(0, (lo + (hi - lo) * st.intensity) / 100)
-    end
+    st.spawnMult = math.max(0, (lo + (hi - lo) * st.intensity) / 100)
 
-    if fullMoonOn and N.moonPhase() == FULL_MOON then st.spawnMult = st.spawnMult * 2 end
     return st
 end
 

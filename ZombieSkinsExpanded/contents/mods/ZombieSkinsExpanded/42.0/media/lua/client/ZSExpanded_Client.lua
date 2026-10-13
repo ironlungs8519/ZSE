@@ -112,7 +112,6 @@ local function buildSkinData()
             lastNightLogged = idx
             print(string.format("[ZSExpanded] night %d: quiet=%s intensity=%.2f spawnMult=%.2f",
                 idx, tostring(nightState.quiet), nightState.intensity, nightState.spawnMult))
-            print("[ZSExpanded] moon phase: " .. tostring(ZSExpandedNight.moonPhase()) .. " (4 = full)")
         end
     end
 

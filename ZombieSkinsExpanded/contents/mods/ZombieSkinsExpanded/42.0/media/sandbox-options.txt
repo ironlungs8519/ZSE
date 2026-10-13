@@ -48,12 +48,6 @@ option ZSExpanded.NightSpawnMax
 	type = integer, min = 0, max = 1000, default = 300,
 }
 
-option ZSExpanded.FullMoonDoubleSpawn
-{
-	page = ZSExpandedNight, translation = FullMoonDoubleSpawn,
-	type = boolean, default = false,
-}
-
 option ZSExpanded.NightDebug
 {
 	page = ZSExpandedNight, translation = NightDebug,
